@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { User, Target, Users, CheckCircle, Brain, Clock, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 interface Activity {
   id: string;
@@ -32,6 +33,7 @@ const statusColors = {
 };
 
 export function RecentActivity() {
+  const [showAll, setShowAll] = useState(false);
   const { data: activities } = useQuery<Activity[]>({
     queryKey: ["recent-activity"],
     queryFn: async () => {
@@ -46,6 +48,10 @@ export function RecentActivity() {
     refetchInterval: 15000,
   });
 
+  const displayedActivities = showAll
+    ? activities
+    : activities?.slice(0, 10);
+
   return (
     <Card>
       <CardHeader>
@@ -53,12 +59,12 @@ export function RecentActivity() {
       </CardHeader>
       <CardContent className="p-0">
         <div className="divide-y">
-        {activities?.length === 0 ? (
+        {displayedActivities?.length === 0 ? (
           <div className="px-6 py-8 text-center text-muted-foreground">
             No recent activity
           </div>
         ) : (
-          activities?.slice(0, 10).map((activity) => {
+          displayedActivities?.map((activity) => {
             const Icon = activityIcons[activity.type] || AlertCircle;
             return (
               <div key={activity.id} className="px-6 py-4">
@@ -86,8 +92,13 @@ export function RecentActivity() {
 
         {activities && activities.length > 10 && (
           <div className="border-t px-6 py-3">
-            <Button variant="ghost" size="sm" className="text-sm">
-              View all activity
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-sm"
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? 'Show less' : 'View all activity'}
             </Button>
           </div>
         )}

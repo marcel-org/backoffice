@@ -34,7 +34,8 @@ export function ChartSection() {
           ridesOverTime: [],
           revenueByDay: [],
           userDistribution: [],
-          peakHours: []
+          peakHours: [],
+          userOnboarding: []
         };
       }
     },
@@ -42,7 +43,7 @@ export function ChartSection() {
   });
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
       <Card>
         <CardHeader>
           <CardTitle>Quest Activity Over Time</CardTitle>
@@ -173,6 +174,50 @@ export function ChartSection() {
             />
             <Bar dataKey="rides" name="Quest Completions" fill="#10B981" radius={[8, 8, 0, 0]} />
           </BarChart>
+        </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>New User Onboarding</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={chartData?.userOnboarding || []}>
+            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+            <XAxis
+              dataKey="date"
+              className="stroke-muted-foreground"
+              style={{ fontSize: 12 }}
+            />
+            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "8px",
+                color: "hsl(var(--popover-foreground))"
+              }}
+            />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="signups"
+              name="New Signups"
+              stroke="#8B5CF6"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="completed_onboarding"
+              name="Completed Onboarding"
+              stroke="#06B6D4"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
         </ResponsiveContainer>
         </CardContent>
       </Card>
