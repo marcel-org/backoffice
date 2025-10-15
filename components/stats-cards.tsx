@@ -22,7 +22,7 @@ export function StatsCards() {
     queryKey: ["stats"],
     queryFn: async () => {
       try {
-        const { data } = await api.get("/api/admin/stats");
+        const { data } = await api.get("/admin/stats");
         return data;
       } catch (error) {
         console.warn('Using mock data for stats');

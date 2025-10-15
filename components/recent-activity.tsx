@@ -37,7 +37,7 @@ export function RecentActivity() {
     queryKey: ["recent-activity"],
     queryFn: async () => {
       try {
-        const { data } = await api.get("/api/admin/activity");
+        const { data } = await api.get("/admin/activity");
         return data;
       } catch (error) {
         console.warn('Using mock data for activity');

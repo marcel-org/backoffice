@@ -11,6 +11,7 @@ import {
   Activity
 } from "lucide-react";
 import { logout } from "@/lib/auth";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
@@ -24,8 +25,9 @@ export function Sidebar() {
 
   return (
     <div className="flex h-full w-64 flex-col border-r bg-background">
-      <div className="flex h-16 items-center px-6 border-b">
+      <div className="flex h-16 items-center justify-between px-6 border-b">
         <h1 className="text-xl font-bold">Marcel Admin</h1>
+        <ThemeToggle />
       </div>
 
       <nav className="flex-1 space-y-1 px-3 py-4">

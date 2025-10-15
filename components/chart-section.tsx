@@ -27,7 +27,7 @@ export function ChartSection() {
     queryKey: ["charts"],
     queryFn: async () => {
       try {
-        const { data } = await api.get("/api/admin/charts");
+        const { data } = await api.get("/admin/charts");
         return data;
       } catch (error) {
         console.warn('Using mock data for charts');
