@@ -99,61 +99,37 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
-}
 
-@layer components {
   .fcolc {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @apply flex flex-col items-center;
   }
 
   .frowc {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @apply flex flex-row items-center;
   }
 
   .frow {
-    display: flex;
-    flex-direction: row;
+    @apply flex flex-row;
   }
 
   .fcol {
-    display: flex;
-    flex-direction: column;
+    @apply flex flex-col;
   }
 
   .title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 700;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
+    @apply text-3xl font-bold flex flex-row items-center gap-3;
   }
 
   .subtitle {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 600;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
+    @apply text-2xl font-semibold flex flex-row items-center gap-3;
   }
 
   .card-title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 600;
+    @apply text-xl font-semibold;
   }
 
   .card-subtitle {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    font-weight: 500;
+    @apply text-lg font-medium;
   }
 
   .marcel-gradient {
@@ -230,19 +206,10 @@
   }
 
   .hover-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    @apply transition-all-smooth hover:transform hover:-translate-y-1 hover:shadow-lg;
   }
 
   .hover-glow {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .hover-glow:hover {
-    box-shadow: 0 0 20px rgba(255, 150, 1, 0.3);
+    @apply transition-all-smooth hover:shadow-[0_0_20px_rgba(255,150,1,0.3)];
   }
 }
