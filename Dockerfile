@@ -39,11 +39,8 @@ RUN adduser --system --uid 1001 nextjs
 RUN chown -R nextjs:nodejs /app
 USER nextjs
 
-# Expose port
-EXPOSE 3000
+# Railway will set PORT environment variable
+# We don't need to EXPOSE a specific port since Railway handles this
 
-# Set environment variable for port
-ENV PORT=3000
-
-# Start the application
-CMD ["bun", "start"]
+# Start the application with port from environment
+CMD ["sh", "-c", "bun run start"]
