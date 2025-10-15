@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { RuntimeConfigScript } from "./runtime-config";
 
 export const metadata: Metadata = {
   title: "Marcel Admin",
@@ -14,6 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <RuntimeConfigScript />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

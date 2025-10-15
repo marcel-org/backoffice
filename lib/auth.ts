@@ -5,6 +5,8 @@ export interface Admin {
   role: 'admin' | 'super_admin';
 }
 
+import { runtimeConfig } from './env';
+
 export async function checkAuth(): Promise<Admin | null> {
   if (typeof window === 'undefined') return null;
 
@@ -12,7 +14,7 @@ export async function checkAuth(): Promise<Admin | null> {
   if (!token) return null;
 
   // Mock authentication for development
-  if (process.env.NEXT_PUBLIC_MOCK_API === 'true') {
+  if (runtimeConfig.MOCK_API) {
     return {
       id: '1',
       email: 'admin@marcel.com',
@@ -22,7 +24,7 @@ export async function checkAuth(): Promise<Admin | null> {
   }
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+    const apiUrl = runtimeConfig.API_URL;
     const response = await fetch(`${apiUrl}/admin/verify`, {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -50,7 +52,7 @@ export async function checkAuth(): Promise<Admin | null> {
 
 export async function login(email: string, password: string): Promise<{ admin: Admin; token: string } | null> {
   // Mock login for development
-  if (process.env.NEXT_PUBLIC_MOCK_API === 'true') {
+  if (runtimeConfig.MOCK_API) {
     if (email === 'admin@marcel.com' && password === 'admin123') {
       const mockResult = {
         admin: {
@@ -68,7 +70,7 @@ export async function login(email: string, password: string): Promise<{ admin: A
   }
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+    const apiUrl = runtimeConfig.API_URL;
     const response = await fetch(`${apiUrl}/admin/login`, {
       method: 'POST',
       headers: {
