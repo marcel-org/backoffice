@@ -1,9 +1,8 @@
 "use client";
 
-import { Users, Car, MapPin, TrendingUp, Clock, AlertCircle } from "lucide-react";
+import { Users, Target, Zap, TrendingUp, Brain, Trophy } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { mockStats } from "@/lib/mock-data";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface Stats {
@@ -25,8 +24,17 @@ export function StatsCards() {
         const { data } = await api.get("/admin/stats");
         return data;
       } catch (error) {
-        console.warn('Using mock data for stats');
-        return mockStats;
+        console.error('Failed to fetch stats:', error);
+        return {
+          totalUsers: 0,
+          activeDrivers: 0,
+          totalRides: 0,
+          todayRides: 0,
+          avgRideTime: 0,
+          activeIssues: 0,
+          userGrowth: 0,
+          revenue: 0
+        };
       }
     },
     refetchInterval: 30000,
@@ -41,39 +49,39 @@ export function StatsCards() {
       changeType: "positive" as const,
     },
     {
-      title: "Active Drivers",
+      title: "Active Users",
       value: stats?.activeDrivers || 0,
-      icon: Car,
-      change: "Online now",
+      icon: Zap,
+      change: "This week",
       changeType: "neutral" as const,
     },
     {
-      title: "Total Rides",
+      title: "Quests Completed",
       value: stats?.totalRides || 0,
-      icon: MapPin,
+      icon: Target,
       change: `${stats?.todayRides || 0} today`,
-      changeType: "neutral" as const,
-    },
-    {
-      title: "Avg Ride Time",
-      value: `${stats?.avgRideTime || 0}m`,
-      icon: Clock,
-      change: "Last 7 days",
-      changeType: "neutral" as const,
-    },
-    {
-      title: "Revenue",
-      value: `€${(stats?.revenue || 0).toLocaleString()}`,
-      icon: TrendingUp,
-      change: "+12%",
       changeType: "positive" as const,
     },
     {
-      title: "Active Issues",
+      title: "Avg XP Reward",
+      value: `${stats?.avgRideTime || 0} XP`,
+      icon: Trophy,
+      change: "Per quest",
+      changeType: "neutral" as const,
+    },
+    {
+      title: "Total Engagement",
+      value: `${(stats?.revenue || 0).toLocaleString()}`,
+      icon: TrendingUp,
+      change: "Actions taken",
+      changeType: "positive" as const,
+    },
+    {
+      title: "Focus Sessions",
       value: stats?.activeIssues || 0,
-      icon: AlertCircle,
-      change: "Requires attention",
-      changeType: stats?.activeIssues ? "negative" : "neutral" as const,
+      icon: Brain,
+      change: "Active now",
+      changeType: "info" as const,
     },
   ];
 
@@ -98,6 +106,8 @@ export function StatsCards() {
                         ? "text-green-600 dark:text-green-400"
                         : card.changeType === "negative"
                         ? "text-red-600 dark:text-red-400"
+                        : card.changeType === "info"
+                        ? "text-blue-600 dark:text-blue-400"
                         : "text-muted-foreground"
                     }`}
                   >

@@ -2,7 +2,6 @@
 
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { mockChartData } from "@/lib/mock-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   LineChart,
@@ -30,8 +29,13 @@ export function ChartSection() {
         const { data } = await api.get("/admin/charts");
         return data;
       } catch (error) {
-        console.warn('Using mock data for charts');
-        return mockChartData;
+        console.error('Failed to fetch charts data:', error);
+        return {
+          ridesOverTime: [],
+          revenueByDay: [],
+          userDistribution: [],
+          peakHours: []
+        };
       }
     },
     refetchInterval: 60000,
@@ -41,29 +45,31 @@ export function ChartSection() {
     <div className="grid gap-6 lg:grid-cols-2">
       <Card>
         <CardHeader>
-          <CardTitle>Rides Over Time</CardTitle>
+          <CardTitle>Quest Activity Over Time</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData?.ridesOverTime || []}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="date"
-              stroke="#9CA3AF"
+              className="stroke-muted-foreground"
               style={{ fontSize: 12 }}
             />
-            <YAxis stroke="#9CA3AF" style={{ fontSize: 12 }} />
+            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#1F2937",
-                border: "none",
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
                 borderRadius: "8px",
+                color: "hsl(var(--popover-foreground))"
               }}
             />
             <Legend />
             <Line
               type="monotone"
               dataKey="rides"
+              name="Quests Created"
               stroke="#3B82F6"
               strokeWidth={2}
               dot={false}
@@ -71,6 +77,7 @@ export function ChartSection() {
             <Line
               type="monotone"
               dataKey="completed"
+              name="Quests Completed"
               stroke="#10B981"
               strokeWidth={2}
               dot={false}
@@ -82,26 +89,27 @@ export function ChartSection() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Revenue by Day</CardTitle>
+          <CardTitle>Activity by Day</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData?.revenueByDay || []}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="day"
-              stroke="#9CA3AF"
+              className="stroke-muted-foreground"
               style={{ fontSize: 12 }}
             />
-            <YAxis stroke="#9CA3AF" style={{ fontSize: 12 }} />
+            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#1F2937",
-                border: "none",
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
                 borderRadius: "8px",
+                color: "hsl(var(--popover-foreground))"
               }}
             />
-            <Bar dataKey="revenue" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+            <Bar dataKey="revenue" name="Engagement Score" fill="#3B82F6" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
         </CardContent>
@@ -109,7 +117,7 @@ export function ChartSection() {
 
       <Card>
         <CardHeader>
-          <CardTitle>User Distribution</CardTitle>
+          <CardTitle>User Level Distribution</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
@@ -128,7 +136,14 @@ export function ChartSection() {
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "8px",
+                color: "hsl(var(--popover-foreground))"
+              }}
+            />
           </PieChart>
         </ResponsiveContainer>
         </CardContent>
@@ -136,26 +151,27 @@ export function ChartSection() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Peak Hours</CardTitle>
+          <CardTitle>Peak Productivity Hours</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData?.peakHours || []}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="hour"
-              stroke="#9CA3AF"
+              className="stroke-muted-foreground"
               style={{ fontSize: 12 }}
             />
-            <YAxis stroke="#9CA3AF" style={{ fontSize: 12 }} />
+            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#1F2937",
-                border: "none",
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
                 borderRadius: "8px",
+                color: "hsl(var(--popover-foreground))"
               }}
             />
-            <Bar dataKey="rides" fill="#10B981" radius={[8, 8, 0, 0]} />
+            <Bar dataKey="rides" name="Quest Completions" fill="#10B981" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
         </CardContent>

@@ -15,9 +15,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
-  { name: "Users", href: "/users", icon: Users },
-  { name: "Analytics", href: "/analytics", icon: BarChart3 },
-  { name: "Activity", href: "/activity", icon: Activity },
 ];
 
 export function Sidebar() {

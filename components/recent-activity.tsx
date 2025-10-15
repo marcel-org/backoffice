@@ -2,9 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { mockActivity } from "@/lib/mock-data";
 import { format } from "date-fns";
-import { User, Car, AlertCircle, CheckCircle, XCircle, Clock } from "lucide-react";
+import { User, Target, Users, CheckCircle, Brain, Clock } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -19,9 +18,9 @@ interface Activity {
 
 const activityIcons = {
   user_signup: User,
-  ride_completed: CheckCircle,
-  driver_joined: Car,
-  issue_reported: AlertCircle,
+  ride_completed: Target,
+  driver_joined: Users,
+  issue_reported: Brain,
   payment_received: CheckCircle,
 };
 
@@ -40,8 +39,8 @@ export function RecentActivity() {
         const { data } = await api.get("/admin/activity");
         return data;
       } catch (error) {
-        console.warn('Using mock data for activity');
-        return mockActivity;
+        console.error('Failed to fetch activity:', error);
+        return [];
       }
     },
     refetchInterval: 15000,
