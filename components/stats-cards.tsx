@@ -104,8 +104,6 @@ export function StatsCards() {
                     className={`text-xs ${
                       card.changeType === "positive"
                         ? "text-green-600 dark:text-green-400"
-                        : card.changeType === "negative"
-                        ? "text-red-600 dark:text-red-400"
                         : card.changeType === "info"
                         ? "text-blue-600 dark:text-blue-400"
                         : "text-muted-foreground"
