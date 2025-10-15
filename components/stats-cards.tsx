@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  UsersBold,
+  UsersGroupRoundedBold,
   TargetBold,
-  FlashBold,
-  TrendUpBold,
+  BoltBold,
+  GraphUpBold,
   SmartphoneBold,
   CupBold,
   UserCheckBold
@@ -54,7 +54,7 @@ export function StatsCards() {
     {
       title: "Total Users",
       value: stats?.totalUsers || 0,
-      icon: UsersBold,
+      icon: UsersGroupRoundedBold,
       change: `+${stats?.userGrowth || 0}%`,
       changeType: "positive" as const,
     },
@@ -68,7 +68,7 @@ export function StatsCards() {
     {
       title: "Active Users",
       value: stats?.activeDrivers || 0,
-      icon: FlashBold,
+      icon: BoltBold,
       change: "This week",
       changeType: "neutral" as const,
     },
@@ -89,7 +89,7 @@ export function StatsCards() {
     {
       title: "Total Engagement",
       value: `${(stats?.revenue || 0).toLocaleString()}`,
-      icon: TrendUpBold,
+      icon: GraphUpBold,
       change: "Actions taken",
       changeType: "positive" as const,
     },

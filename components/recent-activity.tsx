@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { format } from "date-fns";
-import { UserBold, TargetBold, UsersBold, CheckCircleBold, SmartphoneBold, ClockCircleBold, InfoCircleBold } from "solar-icon-set";
+import { UserBold, TargetBold, UsersGroupRoundedBold, CheckCircleBold, SmartphoneBold, ClockCircleBold, InfoCircleBold } from "solar-icon-set";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -20,7 +20,7 @@ interface Activity {
 const activityIcons = {
   user_signup: UserBold,
   ride_completed: TargetBold,
-  driver_joined: UsersBold,
+  driver_joined: UsersGroupRoundedBold,
   issue_reported: SmartphoneBold,
   payment_received: CheckCircleBold,
 };
