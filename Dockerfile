@@ -1,6 +1,10 @@
 # Use Bun as the base image
 FROM oven/bun:1 AS base
 
+# Define build arguments for environment variables
+ARG API_URL
+ARG MOCK_API
+
 # Set working directory
 WORKDIR /app
 
@@ -18,6 +22,14 @@ RUN bun run build
 
 # Production image
 FROM oven/bun:1-slim AS production
+
+# Define build arguments again for production stage
+ARG API_URL
+ARG MOCK_API
+
+# Set environment variables from build args
+ENV API_URL=${API_URL}
+ENV MOCK_API=${MOCK_API}
 
 WORKDIR /app
 
