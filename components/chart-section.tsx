@@ -43,7 +43,7 @@ export function ChartSection() {
   });
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+    <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Quest Activity Over Time</CardTitle>
@@ -187,7 +187,7 @@ export function ChartSection() {
           <LineChart data={chartData?.userOnboarding || []}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
-              dataKey="date"
+              dataKey="name"
               className="stroke-muted-foreground"
               style={{ fontSize: 12 }}
             />
