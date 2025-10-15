@@ -8,46 +8,82 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
+    --card: 0 0% 97%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 36 100% 50%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 36 100% 50%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 36 100% 50%;
     --radius: 0.5rem;
+
+    --marcel: 36 100% 50%;
+    --marcel-foreground: 0 0% 100%;
+
+    --easy: 138 76% 90%;
+    --easy-foreground: 152 61% 18%;
+
+    --medium: 217 91% 94%;
+    --medium-foreground: 229 76% 40%;
+
+    --hard: 270 61% 95%;
+    --hard-foreground: 282 84% 35%;
+
+    --epic: 0 100% 93%;
+    --epic-foreground: 353 90% 35%;
+
+    --legendary: 51 96% 85%;
+    --legendary-foreground: 33 100% 28%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 0 0% 9%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 36 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 36 100% 50%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 36 100% 50%;
+
+    --marcel: 36 100% 50%;
+    --marcel-foreground: 0 0% 100%;
+
+    --easy: 143 64% 24%;
+    --easy-foreground: 138 76% 90%;
+
+    --medium: 229 76% 40%;
+    --medium-foreground: 217 91% 94%;
+
+    --hard: 282 84% 35%;
+    --hard-foreground: 270 61% 95%;
+
+    --epic: 353 90% 35%;
+    --epic-foreground: 0 100% 93%;
+
+    --legendary: 33 100% 28%;
+    --legendary-foreground: 51 96% 85%;
   }
 }
 
@@ -62,5 +98,118 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .fcolc {
+    @apply flex flex-col items-center;
+  }
+
+  .frowc {
+    @apply flex flex-row items-center;
+  }
+
+  .frow {
+    @apply flex flex-row;
+  }
+
+  .fcol {
+    @apply flex flex-col;
+  }
+
+  .title {
+    @apply text-3xl font-bold flex flex-row items-center gap-3;
+  }
+
+  .subtitle {
+    @apply text-2xl font-semibold flex flex-row items-center gap-3;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold;
+  }
+
+  .card-subtitle {
+    @apply text-lg font-medium;
+  }
+
+  .marcel-gradient {
+    background: linear-gradient(135deg, hsl(var(--marcel)) 0%, hsl(var(--marcel)) 100%);
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.8s ease-out;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .transition-all-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift {
+    @apply transition-all-smooth hover:transform hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all-smooth hover:shadow-[0_0_20px_rgba(255,150,1,0.3)];
   }
 }

@@ -48,12 +48,14 @@ export function ChartSection() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center animate-slide-up">
         <h2 className="text-2xl font-semibold">Analytics Dashboard</h2>
-        <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
+        <div className="animate-scale-in" style={{ animationDelay: "0.2s" }}>
+          <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
+        </div>
       </div>
 
-      <Card>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
         <CardHeader>
           <CardTitle>Quest Activity Over Time</CardTitle>
         </CardHeader>
@@ -103,7 +105,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
         <CardHeader>
           <CardTitle>Activity by Day</CardTitle>
         </CardHeader>
@@ -137,7 +139,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.5s" }}>
         <CardHeader>
           <CardTitle>User Level Distribution</CardTitle>
         </CardHeader>
@@ -177,7 +179,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.6s" }}>
         <CardHeader>
           <CardTitle>Peak Productivity Hours</CardTitle>
         </CardHeader>
@@ -211,7 +213,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.7s" }}>
         <CardHeader>
           <CardTitle>New User Onboarding</CardTitle>
         </CardHeader>

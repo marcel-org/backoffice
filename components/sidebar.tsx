@@ -20,7 +20,14 @@ export function Sidebar() {
   return (
     <div className="flex h-full w-64 flex-col border-r bg-background">
       <div className="flex h-16 items-center justify-between px-6 border-b">
-        <h1 className="text-xl font-bold">Marcel Admin</h1>
+        <div className="frowc gap-3">
+          <img
+            src="/marcel-logo.png"
+            alt="Marcel Logo"
+            className="h-8 w-8 hover-glow transition-all-smooth"
+          />
+          <h1 className="text-xl font-bold text-primary">Marcel Admin</h1>
+        </div>
         <ThemeToggle />
       </div>
 
@@ -32,9 +39,9 @@ export function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-all-smooth hover-lift",
                 pathname === item.href
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-md"
                   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
               )}
             >
@@ -48,7 +55,7 @@ export function Sidebar() {
       <div className="border-t p-3">
         <button
           onClick={logout}
-          className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-destructive hover:text-destructive-foreground transition-all-smooth hover-lift"
         >
           <LogoutBold className="h-5 w-5" />
           Logout

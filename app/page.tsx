@@ -8,9 +8,14 @@ import { RecentActivity } from "@/components/recent-activity";
 export default function HomePage() {
   return (
     <DashboardLayout>
-      <div className="space-y-8 pb-8">
-        <div className="border-b pb-6">
-          <h1 className="text-4xl font-bold tracking-tight">
+      <div className="space-y-8 pb-8 animate-fade-in">
+        <div className="border-b pb-6 animate-slide-up">
+          <h1 className="title text-primary">
+            <img
+              src="/marcel-logo.png"
+              alt="Marcel"
+              className="h-10 w-10 hover-glow"
+            />
             Marcel Analytics
           </h1>
           <p className="mt-3 text-lg text-muted-foreground">
@@ -19,18 +24,18 @@ export default function HomePage() {
         </div>
 
         <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-semibold mb-6">Key Metrics</h2>
+          <div className="animate-slide-up" style={{ animationDelay: "0.1s" }}>
+            <h2 className="subtitle mb-6">Key Metrics</h2>
             <StatsCards />
           </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold mb-6">Analytics</h2>
+          <div className="animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            <h2 className="subtitle mb-6">Analytics</h2>
             <ChartSection />
           </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold mb-6">Recent Activity</h2>
+          <div className="animate-slide-up" style={{ animationDelay: "0.3s" }}>
+            <h2 className="subtitle mb-6">Recent Activity</h2>
             <RecentActivity />
           </div>
         </div>

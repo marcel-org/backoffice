@@ -107,7 +107,11 @@ export function StatsCards() {
       {cards.map((card, index) => {
         const Icon = card.icon;
         return (
-          <Card key={index}>
+          <Card
+            key={index}
+            className="hover-lift transition-all-smooth animate-scale-in"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div className="space-y-2">
@@ -118,7 +122,7 @@ export function StatsCards() {
                     {card.value}
                   </p>
                   <p
-                    className={`text-xs ${
+                    className={`text-xs font-medium ${
                       card.changeType === "positive"
                         ? "text-green-600 dark:text-green-400"
                         : card.changeType === "info"
@@ -129,8 +133,8 @@ export function StatsCards() {
                     {card.change}
                   </p>
                 </div>
-                <div className="rounded-full bg-muted p-3">
-                  <Icon className="h-6 w-6 text-muted-foreground" />
+                <div className="rounded-full bg-primary/10 p-3 hover-glow transition-all-smooth">
+                  <Icon className="h-6 w-6 text-primary" />
                 </div>
               </div>
             </CardContent>
