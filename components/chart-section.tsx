@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,15 +19,18 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import { TimeRangeSelector, type TimeRange } from "./time-range-selector";
 
 const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
 
 export function ChartSection() {
-  const { data: chartData } = useQuery({
-    queryKey: ["charts"],
+  const [timeRange, setTimeRange] = useState<TimeRange>("7d");
+
+  const { data: chartData, isLoading } = useQuery({
+    queryKey: ["charts", timeRange],
     queryFn: async () => {
       try {
-        const { data } = await api.get("/admin/charts");
+        const { data } = await api.get(`/admin/charts?range=${timeRange}`);
         return data;
       } catch (error) {
         console.error('Failed to fetch charts data:', error);
@@ -44,13 +48,23 @@ export function ChartSection() {
 
   return (
     <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-semibold">Analytics Dashboard</h2>
+        <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
+      </div>
+
       <Card>
         <CardHeader>
           <CardTitle>Quest Activity Over Time</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={chartData?.ridesOverTime || []}>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData?.ridesOverTime || []}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="date"
@@ -83,8 +97,9 @@ export function ChartSection() {
               strokeWidth={2}
               dot={false}
             />
-          </LineChart>
-        </ResponsiveContainer>
+              </LineChart>
+            </ResponsiveContainer>
+          )}
         </CardContent>
       </Card>
 
@@ -93,8 +108,13 @@ export function ChartSection() {
           <CardTitle>Activity by Day</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData?.revenueByDay || []}>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData?.revenueByDay || []}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="day"
@@ -111,8 +131,9 @@ export function ChartSection() {
               }}
             />
             <Bar dataKey="revenue" name="Engagement Score" fill="#3B82F6" radius={[8, 8, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
         </CardContent>
       </Card>
 
@@ -121,8 +142,13 @@ export function ChartSection() {
           <CardTitle>User Level Distribution</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
             <Pie
               data={chartData?.userDistribution || []}
               cx="50%"
@@ -145,8 +171,9 @@ export function ChartSection() {
                 color: "hsl(var(--popover-foreground))"
               }}
             />
-          </PieChart>
-        </ResponsiveContainer>
+              </PieChart>
+            </ResponsiveContainer>
+          )}
         </CardContent>
       </Card>
 
@@ -155,8 +182,13 @@ export function ChartSection() {
           <CardTitle>Peak Productivity Hours</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData?.peakHours || []}>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData?.peakHours || []}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="hour"
@@ -173,8 +205,9 @@ export function ChartSection() {
               }}
             />
             <Bar dataKey="rides" name="Quest Completions" fill="#10B981" radius={[8, 8, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
         </CardContent>
       </Card>
 
@@ -183,8 +216,13 @@ export function ChartSection() {
           <CardTitle>New User Onboarding</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={chartData?.userOnboarding || []}>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData?.userOnboarding || []}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis
               dataKey="name"
@@ -217,8 +255,9 @@ export function ChartSection() {
               strokeWidth={2}
               dot={false}
             />
-          </LineChart>
-        </ResponsiveContainer>
+              </LineChart>
+            </ResponsiveContainer>
+          )}
         </CardContent>
       </Card>
     </div>
