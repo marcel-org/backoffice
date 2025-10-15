@@ -6,6 +6,11 @@ import { RuntimeConfigScript } from "./runtime-config";
 export const metadata: Metadata = {
   title: "Marcel Admin",
   description: "Admin dashboard for Marcel",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
