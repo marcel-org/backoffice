@@ -58,6 +58,58 @@ export function ChartSection() {
 
       <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
         <CardHeader>
+          <CardTitle>Total Users Growth Over Time</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData?.userGrowth || []}>
+            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+            <XAxis
+              dataKey="date"
+              className="stroke-muted-foreground"
+              style={{ fontSize: 12 }}
+            />
+            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(var(--popover))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "8px",
+                color: "hsl(var(--popover-foreground))"
+              }}
+            />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="totalUsers"
+              name="Total Users"
+              stroke="#FF9601"
+              strokeWidth={3}
+              dot={{ fill: "#FF9601", strokeWidth: 2, r: 4 }}
+              activeDot={{ r: 6, stroke: "#FF9601", strokeWidth: 2, fill: "#FFF" }}
+            />
+            <Line
+              type="monotone"
+              dataKey="activeUsers"
+              name="Active Users"
+              stroke="#10B981"
+              strokeWidth={2}
+              dot={false}
+              strokeDasharray="5 5"
+            />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
+        <CardHeader>
           <CardTitle>Quest Activity Over Time</CardTitle>
         </CardHeader>
         <CardContent>
@@ -264,57 +316,6 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.8s" }}>
-        <CardHeader>
-          <CardTitle>Total Users Growth Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.userGrowth || []}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis
-              dataKey="date"
-              className="stroke-muted-foreground"
-              style={{ fontSize: 12 }}
-            />
-            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="totalUsers"
-              name="Total Users"
-              stroke="#FF9601"
-              strokeWidth={3}
-              dot={{ fill: "#FF9601", strokeWidth: 2, r: 4 }}
-              activeDot={{ r: 6, stroke: "#FF9601", strokeWidth: 2, fill: "#FFF" }}
-            />
-            <Line
-              type="monotone"
-              dataKey="activeUsers"
-              name="Active Users"
-              stroke="#10B981"
-              strokeWidth={2}
-              dot={false}
-              strokeDasharray="5 5"
-            />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
     </div>
   );
 }

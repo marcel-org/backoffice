@@ -7,7 +7,9 @@ import {
   GraphUpBold,
   SmartphoneBold,
   CupBold,
-  UserCheckBold
+  UserCheckBold,
+  ChartSquareBold,
+  AwardBold
 } from "solar-icon-set";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
@@ -23,6 +25,8 @@ interface Stats {
   activeIssues: number;
   userGrowth: number;
   revenue: number;
+  onboardingPercentage: number;
+  avgUserLevel: number;
 }
 
 export function StatsCards() {
@@ -43,7 +47,9 @@ export function StatsCards() {
           avgRideTime: 0,
           activeIssues: 0,
           userGrowth: 0,
-          revenue: 0
+          revenue: 0,
+          onboardingPercentage: 0,
+          avgUserLevel: 0
         };
       }
     },
