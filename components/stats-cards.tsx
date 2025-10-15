@@ -9,7 +9,7 @@ import {
   CupBold,
   UserCheckBold,
   ChartSquareBold,
-  AwardBold
+  MedalStarBold
 } from "solar-icon-set";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
@@ -105,6 +105,20 @@ export function StatsCards() {
       icon: SmartphoneBold,
       change: "Active now",
       changeType: "info" as const,
+    },
+    {
+      title: "Onboarding Rate",
+      value: `${stats?.onboardingPercentage || 0}%`,
+      icon: ChartSquareBold,
+      change: "Users completed setup",
+      changeType: "positive" as const,
+    },
+    {
+      title: "Average User Level",
+      value: `Level ${stats?.avgUserLevel || 0}`,
+      icon: MedalStarBold,
+      change: "Platform progression",
+      changeType: "neutral" as const,
     },
   ];
 
