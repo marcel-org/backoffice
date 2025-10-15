@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { format } from "date-fns";
-import { User, Target, Users, CheckCircle, Brain, Clock, AlertCircle } from "lucide-react";
+import { UserBold, TargetBold, UsersBold, CheckCircleBold, SmartphoneBold, ClockCircleBold, InfoCircleBold } from "solar-icon-set";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -18,11 +18,11 @@ interface Activity {
 }
 
 const activityIcons = {
-  user_signup: User,
-  ride_completed: Target,
-  driver_joined: Users,
-  issue_reported: Brain,
-  payment_received: CheckCircle,
+  user_signup: UserBold,
+  ride_completed: TargetBold,
+  driver_joined: UsersBold,
+  issue_reported: SmartphoneBold,
+  payment_received: CheckCircleBold,
 };
 
 const statusColors = {
@@ -65,7 +65,7 @@ export function RecentActivity() {
           </div>
         ) : (
           displayedActivities?.map((activity) => {
-            const Icon = activityIcons[activity.type] || AlertCircle;
+            const Icon = activityIcons[activity.type] || InfoCircleBold;
             return (
               <div key={activity.id} className="px-6 py-4">
                 <div className="flex items-start gap-4">
@@ -79,7 +79,7 @@ export function RecentActivity() {
                       {activity.description}
                     </p>
                     <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3" />
+                      <ClockCircleBold className="h-3 w-3" />
                       {format(new Date(activity.timestamp), "MMM d, h:mm a")}
                     </div>
                   </div>

@@ -1,12 +1,21 @@
 "use client";
 
-import { Users, Target, Zap, TrendingUp, Brain, Trophy } from "lucide-react";
+import {
+  UsersBold,
+  TargetBold,
+  FlashBold,
+  TrendUpBold,
+  SmartphoneBold,
+  CupBold,
+  UserCheckBold
+} from "solar-icon-set";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface Stats {
   totalUsers: number;
+  totalOnboardedUsers: number;
   activeDrivers: number;
   totalRides: number;
   todayRides: number;
@@ -27,6 +36,7 @@ export function StatsCards() {
         console.error('Failed to fetch stats:', error);
         return {
           totalUsers: 0,
+          totalOnboardedUsers: 0,
           activeDrivers: 0,
           totalRides: 0,
           todayRides: 0,
@@ -44,42 +54,49 @@ export function StatsCards() {
     {
       title: "Total Users",
       value: stats?.totalUsers || 0,
-      icon: Users,
+      icon: UsersBold,
       change: `+${stats?.userGrowth || 0}%`,
+      changeType: "positive" as const,
+    },
+    {
+      title: "Onboarded Users",
+      value: stats?.totalOnboardedUsers || 0,
+      icon: UserCheckBold,
+      change: "Completed setup",
       changeType: "positive" as const,
     },
     {
       title: "Active Users",
       value: stats?.activeDrivers || 0,
-      icon: Zap,
+      icon: FlashBold,
       change: "This week",
       changeType: "neutral" as const,
     },
     {
       title: "Quests Completed",
       value: stats?.totalRides || 0,
-      icon: Target,
+      icon: TargetBold,
       change: `${stats?.todayRides || 0} today`,
       changeType: "positive" as const,
     },
     {
       title: "Avg XP Reward",
       value: `${stats?.avgRideTime || 0} XP`,
-      icon: Trophy,
+      icon: CupBold,
       change: "Per quest",
       changeType: "neutral" as const,
     },
     {
       title: "Total Engagement",
       value: `${(stats?.revenue || 0).toLocaleString()}`,
-      icon: TrendingUp,
+      icon: TrendUpBold,
       change: "Actions taken",
       changeType: "positive" as const,
     },
     {
       title: "Focus Sessions",
       value: stats?.activeIssues || 0,
-      icon: Brain,
+      icon: SmartphoneBold,
       change: "Active now",
       changeType: "info" as const,
     },

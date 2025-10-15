@@ -4,17 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
-  Home,
-  Users,
-  BarChart3,
-  LogOut,
-  Activity
-} from "lucide-react";
+  HomeBold,
+  LogoutBold
+} from "solar-icon-set";
 import { logout } from "@/lib/auth";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: Home },
+  { name: "Dashboard", href: "/", icon: HomeBold },
 ];
 
 export function Sidebar() {
@@ -53,7 +50,7 @@ export function Sidebar() {
           onClick={logout}
           className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
         >
-          <LogOut className="h-5 w-5" />
+          <LogoutBold className="h-5 w-5" />
           Logout
         </button>
       </div>
