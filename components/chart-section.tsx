@@ -40,7 +40,8 @@ export function ChartSection() {
           userDistribution: [],
           peakHours: [],
           userOnboarding: [],
-          userGrowth: []
+          userGrowth: [],
+          questCompletionOverTime: []
         };
       }
     },
@@ -160,6 +161,49 @@ export function ChartSection() {
 
       <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
         <CardHeader>
+          <CardTitle>Total Quests Completed Over Time</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData?.questCompletionOverTime || []}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                <XAxis
+                  dataKey="date"
+                  className="stroke-muted-foreground"
+                  style={{ fontSize: 12 }}
+                />
+                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--popover))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "8px",
+                    color: "hsl(var(--popover-foreground))"
+                  }}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="totalCompleted"
+                  name="Total Completed Quests"
+                  stroke="#8B5CF6"
+                  strokeWidth={3}
+                  dot={{ fill: "#8B5CF6", strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, stroke: "#8B5CF6", strokeWidth: 2, fill: "#FFF" }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.5s" }}>
+        <CardHeader>
           <CardTitle>Activity by Day</CardTitle>
         </CardHeader>
         <CardContent>
@@ -192,7 +236,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.5s" }}>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.6s" }}>
         <CardHeader>
           <CardTitle>User Level Distribution</CardTitle>
         </CardHeader>
@@ -232,7 +276,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.6s" }}>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.7s" }}>
         <CardHeader>
           <CardTitle>Peak Productivity Hours</CardTitle>
         </CardHeader>
@@ -266,7 +310,7 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.7s" }}>
+      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.8s" }}>
         <CardHeader>
           <CardTitle>New User Onboarding</CardTitle>
         </CardHeader>

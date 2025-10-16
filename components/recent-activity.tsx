@@ -40,7 +40,7 @@ export function RecentActivity() {
     queryFn: async () => {
       try {
         const { data } = await api.get("/admin/activity");
-        return data;
+        return Array.isArray(data) ? data : data.activities || [];
       } catch (error) {
         console.error('Failed to fetch activity:', error);
         return [];
