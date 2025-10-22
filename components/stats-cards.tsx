@@ -9,7 +9,13 @@ import {
   CupBold,
   UserCheckBold,
   ChartSquareBold,
-  MedalStarBold
+  MedalStarBold,
+  ChatRoundLineBold,
+  ChatSquareBold,
+  LetterBold,
+  HomeAngleBold,
+  HomeSmileBold,
+  HomeAddAngleBold
 } from "solar-icon-set";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
@@ -27,6 +33,14 @@ interface Stats {
   revenue: number;
   onboardingPercentage: number;
   avgUserLevel: number;
+  totalMessages: number;
+  messagesToday: number;
+  messagesThisWeek: number;
+  avgMessagesPerSpace: number;
+  totalSpaces: number;
+  spacesToday: number;
+  spacesThisWeek: number;
+  activeSpaces: number;
 }
 
 export function StatsCards() {
@@ -49,7 +63,15 @@ export function StatsCards() {
           userGrowth: 0,
           revenue: 0,
           onboardingPercentage: 0,
-          avgUserLevel: 0
+          avgUserLevel: 0,
+          totalMessages: 0,
+          messagesToday: 0,
+          messagesThisWeek: 0,
+          avgMessagesPerSpace: 0,
+          totalSpaces: 0,
+          spacesToday: 0,
+          spacesThisWeek: 0,
+          activeSpaces: 0
         };
       }
     },
@@ -119,6 +141,48 @@ export function StatsCards() {
       icon: MedalStarBold,
       change: "Platform progression",
       changeType: "neutral" as const,
+    },
+    {
+      title: "Total Messages",
+      value: (stats?.totalMessages || 0).toLocaleString(),
+      icon: ChatRoundLineBold,
+      change: `${stats?.messagesToday || 0} today`,
+      changeType: "positive" as const,
+    },
+    {
+      title: "Messages This Week",
+      value: (stats?.messagesThisWeek || 0).toLocaleString(),
+      icon: ChatSquareBold,
+      change: "Last 7 days",
+      changeType: "info" as const,
+    },
+    {
+      title: "Avg Messages/Space",
+      value: stats?.avgMessagesPerSpace || 0,
+      icon: LetterBold,
+      change: "Per space",
+      changeType: "neutral" as const,
+    },
+    {
+      title: "Total Spaces",
+      value: stats?.totalSpaces || 0,
+      icon: HomeAngleBold,
+      change: `${stats?.spacesToday || 0} created today`,
+      changeType: "positive" as const,
+    },
+    {
+      title: "Active Spaces",
+      value: stats?.activeSpaces || 0,
+      icon: HomeSmileBold,
+      change: "With recent activity",
+      changeType: "info" as const,
+    },
+    {
+      title: "Spaces This Week",
+      value: stats?.spacesThisWeek || 0,
+      icon: HomeAddAngleBold,
+      change: "Last 7 days",
+      changeType: "positive" as const,
     },
   ];
 

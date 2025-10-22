@@ -41,7 +41,10 @@ export function ChartSection() {
           peakHours: [],
           userOnboarding: [],
           userGrowth: [],
-          questCompletionOverTime: []
+          questCompletionOverTime: [],
+          messagesOverTime: [],
+          dailyMessages: [],
+          spacesOverTime: []
         };
       }
     },
@@ -354,6 +357,126 @@ export function ChartSection() {
               strokeWidth={2}
               dot={false}
             />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.9s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Messages Sent Over Time</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData?.messagesOverTime || []}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                <XAxis
+                  dataKey="date"
+                  className="stroke-muted-foreground"
+                  style={{ fontSize: 12 }}
+                />
+                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--popover))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "8px",
+                    color: "hsl(var(--popover-foreground))"
+                  }}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="totalMessages"
+                  name="Total Messages"
+                  stroke="#EC4899"
+                  strokeWidth={3}
+                  dot={{ fill: "#EC4899", strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, stroke: "#EC4899", strokeWidth: 2, fill: "#FFF" }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "1.0s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Daily Messages Count</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData?.dailyMessages || []}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                <XAxis
+                  dataKey="date"
+                  className="stroke-muted-foreground"
+                  style={{ fontSize: 12 }}
+                />
+                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--popover))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "8px",
+                    color: "hsl(var(--popover-foreground))"
+                  }}
+                />
+                <Bar dataKey="messages" name="Messages" fill="#06B6D4" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "1.1s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Spaces Created Over Time</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center justify-center h-[300px]">
+              <div className="text-muted-foreground">Loading chart data...</div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData?.spacesOverTime || []}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                <XAxis
+                  dataKey="date"
+                  className="stroke-muted-foreground"
+                  style={{ fontSize: 12 }}
+                />
+                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--popover))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "8px",
+                    color: "hsl(var(--popover-foreground))"
+                  }}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="totalSpaces"
+                  name="Total Spaces"
+                  stroke="#F59E0B"
+                  strokeWidth={3}
+                  dot={{ fill: "#F59E0B", strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, stroke: "#F59E0B", strokeWidth: 2, fill: "#FFF" }}
+                />
               </LineChart>
             </ResponsiveContainer>
           )}
