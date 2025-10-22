@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/lib/auth";
 import { UserBold, LockKeyholeMinimalisticBold, DangerBold } from "solar-icon-set";
+import { ShapeElement } from "@/components/shape-element";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -34,14 +35,14 @@ export default function LoginPage() {
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 sm:p-10 space-y-8">
           <div className="text-center space-y-4">
             <div className="flex justify-center mb-4">
-              <div className="relative">
-                <div className="w-20 h-20 bg-[#FF9500] rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover-glow transition-all-smooth">
-                  <img
-                    src="/marcel-logo.png"
-                    alt="Marcel"
-                    className="h-12 w-12"
-                  />
-                </div>
+              <div className="relative transform rotate-3 hover-glow transition-all-smooth">
+                <ShapeElement
+                  shape="pentagon"
+                  color="#FF9500"
+                  width={80}
+                  height={80}
+                  className="drop-shadow-lg"
+                />
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">

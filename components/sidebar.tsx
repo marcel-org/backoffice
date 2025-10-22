@@ -9,6 +9,7 @@ import {
 } from "solar-icon-set";
 import { logout } from "@/lib/auth";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ShapeElement } from "@/components/shape-element";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: HomeBold },
@@ -21,14 +22,14 @@ export function Sidebar() {
     <div className="flex h-full w-64 flex-col border-r bg-white dark:bg-gray-800 shadow-sm">
       <div className="flex h-20 items-center justify-between px-6 border-b border-gray-200 dark:border-gray-700">
         <div className="frowc gap-3">
-          <div className="relative">
-            <div className="w-10 h-10 bg-[#FF9500] rounded-xl flex items-center justify-center shadow-md transform rotate-3 hover-glow transition-all-smooth">
-              <img
-                src="/marcel-logo.png"
-                alt="Marcel Logo"
-                className="h-6 w-6"
-              />
-            </div>
+          <div className="relative transform rotate-3 hover-glow transition-all-smooth">
+            <ShapeElement
+              shape="hexagon"
+              color="#FF9500"
+              width={40}
+              height={40}
+              className="drop-shadow-md"
+            />
           </div>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white">Marcel Admin</h1>
         </div>

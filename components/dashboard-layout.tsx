@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { checkAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { HamburgerMenuBold, CloseCircleBold } from "solar-icon-set";
+import { ShapeElement } from "@/components/shape-element";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
@@ -25,14 +26,14 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center gap-4">
-          <div className="relative">
-            <div className="w-16 h-16 bg-[#FF9500] rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 animate-bounce-in">
-              <img
-                src="/marcel-logo.png"
-                alt="Marcel"
-                className="h-10 w-10"
-              />
-            </div>
+          <div className="relative transform rotate-3 animate-bounce-in">
+            <ShapeElement
+              shape="pentagon"
+              color="#FF9500"
+              width={64}
+              height={64}
+              className="drop-shadow-lg"
+            />
           </div>
           <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">Loading...</div>
         </div>
@@ -72,11 +73,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               )}
             </button>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#FF9500] rounded-lg flex items-center justify-center shadow-md transform rotate-3">
-                <img
-                  src="/marcel-logo.png"
-                  alt="Marcel"
-                  className="h-5 w-5"
+              <div className="transform rotate-3">
+                <ShapeElement
+                  shape="circle"
+                  color="#FF9500"
+                  width={32}
+                  height={32}
+                  className="drop-shadow-md"
                 />
               </div>
               <h1 className="text-lg font-bold text-gray-900 dark:text-white">Marcel Admin</h1>
