@@ -24,11 +24,12 @@ export function Sidebar() {
         <div className="frowc gap-3">
           <div className="relative transform rotate-3 hover-glow transition-all-smooth">
             <ShapeElement
-              shape="hexagon"
+              shape="pentagon"
               color="#FF9500"
               width={40}
               height={40}
               className="drop-shadow-md"
+              blink={true}
             />
           </div>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white">Marcel Admin</h1>
