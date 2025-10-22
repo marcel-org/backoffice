@@ -4,7 +4,7 @@ import { Sidebar } from "@/components/sidebar";
 import { useEffect, useState } from "react";
 import { checkAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
-import { HamburgerMenuBold, CloseBold } from "solar-icon-set";
+import { HamburgerMenuBold, CloseCircleBold } from "solar-icon-set";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
@@ -66,7 +66,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               className="p-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all-smooth"
             >
               {mobileMenuOpen ? (
-                <CloseBold className="h-6 w-6" />
+                <CloseCircleBold className="h-6 w-6" />
               ) : (
                 <HamburgerMenuBold className="h-6 w-6" />
               )}
