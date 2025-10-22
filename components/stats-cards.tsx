@@ -123,38 +123,40 @@ export function StatsCards() {
   ];
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {cards.map((card, index) => {
         const Icon = card.icon;
         return (
           <Card
             key={index}
-            className="hover-lift transition-all-smooth animate-scale-in"
-            style={{ animationDelay: `${index * 0.1}s` }}
+            className="hover-lift transition-all-smooth animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800"
+            style={{ animationDelay: `${index * 0.05}s` }}
           >
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">
+              <div className="flex items-start justify-between">
+                <div className="space-y-3 flex-1">
+                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                     {card.title}
                   </p>
-                  <p className="text-2xl font-bold">
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                     {card.value}
                   </p>
-                  <p
-                    className={`text-xs font-medium ${
-                      card.changeType === "positive"
-                        ? "text-green-600 dark:text-green-400"
-                        : card.changeType === "info"
-                        ? "text-blue-600 dark:text-blue-400"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    {card.change}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p
+                      className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                        card.changeType === "positive"
+                          ? "bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400"
+                          : card.changeType === "info"
+                          ? "bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400"
+                          : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+                      }`}
+                    >
+                      {card.change}
+                    </p>
+                  </div>
                 </div>
-                <div className="rounded-full bg-primary/10 p-3 hover-glow transition-all-smooth">
-                  <Icon className="h-6 w-6 text-primary" />
+                <div className="rounded-2xl bg-[#FF9500]/10 p-3 hover-glow transition-all-smooth flex-shrink-0">
+                  <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-[#FF9500]" />
                 </div>
               </div>
             </CardContent>

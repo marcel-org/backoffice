@@ -54,15 +54,15 @@ export function RecentActivity() {
     : activities?.slice(0, 10);
 
   return (
-    <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <InfoCircleBold className="h-5 w-5 text-primary" />
+    <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.4s" }}>
+      <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+        <CardTitle className="flex items-center gap-2 text-lg sm:text-xl text-gray-900 dark:text-white">
+          <InfoCircleBold className="h-5 w-5 text-[#FF9500]" />
           Recent Activity
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="divide-y">
+        <div className="divide-y divide-gray-200 dark:divide-gray-700">
         {displayedActivities?.length === 0 ? (
           <div className="px-6 py-8 text-center text-muted-foreground animate-fade-in">
             <InfoCircleBold className="h-8 w-8 mx-auto mb-2 opacity-50" />
@@ -100,11 +100,11 @@ export function RecentActivity() {
       </div>
 
         {activities && activities.length > 10 && (
-          <div className="border-t px-6 py-3 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+          <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 animate-fade-in bg-gray-50 dark:bg-gray-700/30" style={{ animationDelay: "0.6s" }}>
             <Button
               variant="ghost"
               size="sm"
-              className="text-sm hover-lift text-primary hover:text-primary-foreground hover:bg-primary transition-all-smooth"
+              className="text-sm hover-lift text-[#FF9500] hover:text-white hover:bg-[#FF9500] transition-all-smooth rounded-xl font-semibold"
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? 'Show less' : 'View all activity'}

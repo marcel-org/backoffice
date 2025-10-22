@@ -49,17 +49,17 @@ export function ChartSection() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center animate-slide-up">
-        <h2 className="text-2xl font-semibold">Analytics Dashboard</h2>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 animate-slide-up">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">Analytics Dashboard</h2>
         <div className="animate-scale-in" style={{ animationDelay: "0.2s" }}>
           <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
         </div>
       </div>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
-        <CardHeader>
-          <CardTitle>Total Users Growth Over Time</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.3s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Users Growth Over Time</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -109,9 +109,9 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
-        <CardHeader>
-          <CardTitle>Quest Activity Over Time</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.4s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Quest Activity Over Time</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -159,9 +159,9 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
-        <CardHeader>
-          <CardTitle>Total Quests Completed Over Time</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.4s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Quests Completed Over Time</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -202,9 +202,9 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.5s" }}>
-        <CardHeader>
-          <CardTitle>Activity by Day</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.5s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Activity by Day</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -236,9 +236,9 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.6s" }}>
-        <CardHeader>
-          <CardTitle>User Level Distribution</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.6s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">User Level Distribution</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -276,9 +276,9 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.7s" }}>
-        <CardHeader>
-          <CardTitle>Peak Productivity Hours</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.7s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Peak Productivity Hours</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -310,9 +310,9 @@ export function ChartSection() {
         </CardContent>
       </Card>
 
-      <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.8s" }}>
-        <CardHeader>
-          <CardTitle>New User Onboarding</CardTitle>
+      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.8s" }}>
+        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">New User Onboarding</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
