@@ -42,6 +42,7 @@ export default function LoginPage() {
                   width={80}
                   height={80}
                   className="drop-shadow-lg"
+                  blink={true}
                 />
               </div>
             </div>
