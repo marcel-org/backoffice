@@ -36,8 +36,8 @@ export default function LoginPage() {
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[hsl(var(--background))] p-4">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-[-16rem] h-[32rem] bg-[radial-gradient(circle_at_top,rgba(193,154,107,0.18),transparent_60%)]" />
-        <div className="absolute right-[-10rem] top-24 h-[24rem] w-[24rem] rounded-full bg-[rgba(193,154,107,0.08)] blur-3xl" />
+        <div className="absolute inset-x-0 top-[-16rem] h-[32rem] bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.16),transparent_60%)]" />
+        <div className="absolute right-[-10rem] top-24 h-[24rem] w-[24rem] rounded-full bg-[rgba(148,163,184,0.08)] blur-3xl" />
         <div className="absolute left-[-8rem] bottom-8 h-[18rem] w-[18rem] rounded-full bg-white/5 blur-3xl" />
       </div>
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
             <p className="text-xs uppercase tracking-[0.26em] text-stone-500">
               Backoffice
             </p>
-            <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-[1.4rem] border border-white/10 bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] shadow-[0_18px_40px_rgba(193,154,107,0.3)]">
+            <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-[1.4rem] border border-white/10 bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] shadow-[0_18px_40px_rgba(148,163,184,0.24)]">
               <ChartSquareBold className="h-8 w-8 text-[#120f0a]" />
             </div>
             <h1 className="mt-8 max-w-md text-5xl font-semibold tracking-[-0.05em] text-stone-100">
@@ -158,7 +158,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] px-6 py-4 text-sm font-semibold text-[#120f0a] shadow-[0_18px_40px_rgba(193,154,107,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_48px_rgba(193,154,107,0.34)] disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] px-6 py-4 text-sm font-semibold text-[hsl(var(--primary-foreground))] shadow-[0_18px_40px_rgba(148,163,184,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_48px_rgba(148,163,184,0.24)] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading ? "Signing in..." : "Enter backoffice"}
               </button>

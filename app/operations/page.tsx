@@ -1,24 +1,23 @@
 "use client";
 
 import { DashboardLayout } from "@/components/dashboard-layout";
-import { StatsCards } from "@/components/stats-cards";
+import { RecentActivity } from "@/components/recent-activity";
 
-export default function HomePage() {
+export default function OperationsPage() {
   return (
     <DashboardLayout>
       <div className="space-y-8 pb-8 animate-fade-in">
         <section className="relative overflow-hidden rounded-[2rem] bg-white/5 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.2)] backdrop-blur-xl sm:p-8">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.16),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(120,130,148,0.1),transparent_30%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.14),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(125,211,252,0.1),transparent_28%)]" />
           <div className="relative max-w-3xl space-y-4">
             <p className="text-sm uppercase tracking-[0.2em] text-stone-500">
-              Overview
+              Operations
             </p>
             <h1 className="text-4xl font-semibold tracking-[-0.04em] text-stone-50 sm:text-5xl">
-              Marcel Backoffice
+              Activity streams and live platform movement.
             </h1>
             <p className="max-w-2xl text-sm leading-7 text-stone-300 sm:text-base">
-              Track Marcel users, quests, messages, spaces, and activity in one
-              cleaner admin view.
+              Recent Marcel activity in its own dedicated workspace.
             </p>
           </div>
         </section>
@@ -27,17 +26,17 @@ export default function HomePage() {
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm uppercase tracking-[0.22em] text-stone-500">
-                Metrics
+                Feed
               </p>
               <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-stone-100">
-                Core product health
+                Recent activity
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-stone-400">
-              Adoption, usage, and activity at a glance.
+              Signups, sessions, completions, and milestones.
             </p>
           </div>
-          <StatsCards />
+          <RecentActivity />
         </section>
       </div>
     </DashboardLayout>

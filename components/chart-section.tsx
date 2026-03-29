@@ -21,7 +21,7 @@ import {
 } from "recharts";
 import { TimeRangeSelector, type TimeRange } from "./time-range-selector";
 
-const COLORS = ["#c19a6b", "#d6b98b", "#8ecae6", "#7dd3a7", "#f59e0b"];
+const COLORS = ["#94a3b8", "#cbd5e1", "#7dd3fc", "#86efac", "#a7f3d0"];
 
 const tooltipStyle = {
   backgroundColor: "rgba(19, 18, 17, 0.94)",
@@ -45,9 +45,9 @@ const chartCards = [
           type="monotone"
           dataKey="totalUsers"
           name="Total Users"
-          stroke="#c19a6b"
+          stroke="#94a3b8"
           strokeWidth={3}
-          dot={{ fill: "#c19a6b", r: 3 }}
+          dot={{ fill: "#94a3b8", r: 3 }}
           activeDot={{ r: 5 }}
         />
         <Line
@@ -76,7 +76,7 @@ const chartCards = [
           type="monotone"
           dataKey="rides"
           name="Quests Created"
-          stroke="#d6b98b"
+          stroke="#cbd5e1"
           strokeWidth={2.5}
           dot={false}
         />
@@ -105,9 +105,9 @@ const chartCards = [
           type="monotone"
           dataKey="totalCompleted"
           name="Completed"
-          stroke="#f59e0b"
+          stroke="#7dd3fc"
           strokeWidth={3}
-          dot={{ fill: "#f59e0b", r: 3 }}
+          dot={{ fill: "#7dd3fc", r: 3 }}
           activeDot={{ r: 5 }}
         />
       </LineChart>
@@ -122,7 +122,7 @@ const chartCards = [
         <XAxis dataKey="day" stroke="#78716c" fontSize={12} />
         <YAxis stroke="#78716c" fontSize={12} />
         <Tooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="revenue" name="Engagement Score" fill="#c19a6b" radius={[10, 10, 0, 0]} />
+        <Bar dataKey="revenue" name="Engagement Score" fill="#94a3b8" radius={[10, 10, 0, 0]} />
       </BarChart>
     ),
   },
@@ -176,7 +176,7 @@ const chartCards = [
           type="monotone"
           dataKey="signups"
           name="Signups"
-          stroke="#d6b98b"
+          stroke="#cbd5e1"
           strokeWidth={2.5}
           dot={false}
         />
@@ -240,9 +240,9 @@ const chartCards = [
           type="monotone"
           dataKey="totalSpaces"
           name="Total Spaces"
-          stroke="#f59e0b"
+          stroke="#94a3b8"
           strokeWidth={3}
-          dot={{ fill: "#f59e0b", r: 3 }}
+          dot={{ fill: "#94a3b8", r: 3 }}
           activeDot={{ r: 5 }}
         />
       </LineChart>
@@ -283,8 +283,7 @@ export function ChartSection() {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
           <p className="text-sm text-stone-400">
-            Metrics are grouped into growth, composition, and lifecycle panels
-            for a cleaner read.
+            Grouped into growth, composition, and lifecycle panels.
           </p>
         </div>
         <div className="w-full sm:w-auto">
