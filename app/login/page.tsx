@@ -51,7 +51,7 @@ export default function LoginPage() {
               <ChartSquareBold className="h-8 w-8 text-[#120f0a]" />
             </div>
             <h1 className="mt-8 max-w-md text-5xl font-semibold tracking-[-0.05em] text-stone-100">
-              Marcel admin, now dressed like it respects itself.
+              Marcel Backoffice
             </h1>
             <p className="mt-5 max-w-md text-sm leading-7 text-stone-400">
               Cleaner hierarchy, warmer tones, and less visual yelling. Small
@@ -84,7 +84,7 @@ export default function LoginPage() {
                 Backoffice
               </p>
               <h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-stone-100">
-                Marcel admin
+                Marcel Backoffice
               </h1>
             </div>
 

@@ -31,12 +31,12 @@ export function Sidebar({
     <aside
       className={cn(
         "flex h-full flex-col border-r border-white/10 bg-[rgba(9,9,12,0.82)] backdrop-blur-xl",
-        compact ? "w-[19rem]" : "sticky top-0 h-screen w-72"
+        compact ? "w-[19rem]" : "h-screen w-72"
       )}
     >
       <div className="p-6">
         <h1 className="text-xl font-semibold tracking-[-0.03em] text-stone-100">
-          Marcel Admin
+          Marcel Backoffice
         </h1>
       </div>
 

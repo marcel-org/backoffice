@@ -46,7 +46,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="relative z-10 flex min-h-screen">
-        <div className="hidden xl:block">
+        <div className="fixed inset-y-0 left-0 z-20 hidden xl:block">
           <Sidebar />
         </div>
 
@@ -63,7 +63,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </>
         )}
 
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-w-0 flex-1 flex-col xl:pl-72">
           <header className="sticky top-0 z-30 border-b border-white/10 bg-[rgba(9,9,12,0.72)] px-4 py-4 backdrop-blur-xl xl:hidden">
             <div className="flex items-center justify-between gap-3">
               <div>

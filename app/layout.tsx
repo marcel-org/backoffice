@@ -4,8 +4,8 @@ import { Providers } from "@/components/providers";
 import { RuntimeConfigScript } from "./runtime-config";
 
 export const metadata: Metadata = {
-  title: "Marcel Admin",
-  description: "Admin dashboard for Marcel",
+  title: "Marcel Backoffice",
+  description: "Backoffice for Marcel",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
