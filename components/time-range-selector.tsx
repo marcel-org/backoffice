@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export type TimeRange = "7d" | "30d" | "3m" | "6m" | "1y";
 
@@ -18,13 +23,16 @@ const timeRangeOptions = [
   { value: "1y" as TimeRange, label: "Last year" },
 ];
 
-export function TimeRangeSelector({ value, onChange }: TimeRangeSelectorProps) {
+export function TimeRangeSelector({
+  value,
+  onChange,
+}: TimeRangeSelectorProps) {
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-full rounded-full border border-white/10 bg-white/6 px-5 text-stone-100 sm:w-[220px]">
         <SelectValue placeholder="Select time range" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="border-white/10 bg-[#12110f] text-stone-100">
         {timeRangeOptions.map((option) => (
           <SelectItem key={option.value} value={option.value}>
             {option.label}

@@ -3,8 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/lib/auth";
-import { UserBold, LockKeyholeMinimalisticBold, DangerBold } from "solar-icon-set";
-import { ShapeElement } from "@/components/shape-element";
+import {
+  UserBold,
+  LockKeyholeMinimalisticBold,
+  DangerBold,
+  ChartSquareBold,
+} from "solar-icon-set";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -30,46 +34,87 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
-      <div className="w-full max-w-md animate-scale-in">
-        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 sm:p-10 space-y-8">
-          <div className="text-center space-y-4">
-            <div className="flex justify-center mb-4">
-              <div className="relative transform rotate-3 hover-glow transition-all-smooth">
-                <ShapeElement
-                  shape="pentagon"
-                  color="#FF9500"
-                  width={80}
-                  height={80}
-                  className="drop-shadow-lg"
-                  blink={true}
-                />
-              </div>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[hsl(var(--background))] p-4">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-[-16rem] h-[32rem] bg-[radial-gradient(circle_at_top,rgba(193,154,107,0.18),transparent_60%)]" />
+        <div className="absolute right-[-10rem] top-24 h-[24rem] w-[24rem] rounded-full bg-[rgba(193,154,107,0.08)] blur-3xl" />
+        <div className="absolute left-[-8rem] bottom-8 h-[18rem] w-[18rem] rounded-full bg-white/5 blur-3xl" />
+      </div>
+
+      <div className="relative z-10 grid w-full max-w-5xl overflow-hidden rounded-[2.25rem] border border-white/10 bg-[rgba(9,9,12,0.76)] shadow-[0_30px_90px_rgba(0,0,0,0.4)] backdrop-blur-2xl lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="hidden border-r border-white/10 p-10 lg:flex lg:flex-col lg:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.26em] text-stone-500">
+              Backoffice
+            </p>
+            <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-[1.4rem] border border-white/10 bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] shadow-[0_18px_40px_rgba(193,154,107,0.3)]">
+              <ChartSquareBold className="h-8 w-8 text-[#120f0a]" />
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-              Marcel Admin
+            <h1 className="mt-8 max-w-md text-5xl font-semibold tracking-[-0.05em] text-stone-100">
+              Marcel admin, now dressed like it respects itself.
             </h1>
-            <p className="text-base text-gray-600 dark:text-gray-400">
-              Sign in to access the admin dashboard
+            <p className="mt-5 max-w-md text-sm leading-7 text-stone-400">
+              Cleaner hierarchy, warmer tones, and less visual yelling. Small
+              miracles do happen.
             </p>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {error && (
-              <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl animate-slide-up">
-                <DangerBold className="h-6 w-6 text-red-500 flex-shrink-0" />
-                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          <div className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6">
+            <p className="text-sm font-medium text-stone-200">
+              What changed
+            </p>
+            <div className="mt-4 grid gap-3 text-sm text-stone-400">
+              <div className="rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
+                Section-based dashboard flow
               </div>
-            )}
+              <div className="rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
+                Neutral stone palette with warm gold accents
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
+                Consistent card and navigation system
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <div className="space-y-5">
+        <div className="p-6 sm:p-10">
+          <div className="mx-auto w-full max-w-md">
+            <div className="mb-8 lg:hidden">
+              <p className="text-xs uppercase tracking-[0.26em] text-stone-500">
+                Backoffice
+              </p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-stone-100">
+                Marcel admin
+              </h1>
+            </div>
+
+            <div className="space-y-2">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-stone-100">
+                Sign in
+              </h2>
+              <p className="text-sm text-stone-400">
+                Access the control panel without the old carnival theme.
+              </p>
+            </div>
+
+            <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+              {error && (
+                <div className="flex items-center gap-3 rounded-[1.4rem] border border-rose-400/15 bg-rose-400/10 p-4 text-sm text-rose-100">
+                  <DangerBold className="h-5 w-5 flex-shrink-0" />
+                  <p>{error}</p>
+                </div>
+              )}
+
               <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Email Address
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-stone-300"
+                >
+                  Email address
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <UserBold className="h-5 w-5 text-gray-400" />
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-stone-500">
+                    <UserBold className="h-5 w-5" />
                   </div>
                   <input
                     id="email"
@@ -79,19 +124,22 @@ export default function LoginPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.currentTarget.value)}
-                    className="pl-12 block w-full px-4 py-3.5 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF9500] focus:border-transparent dark:bg-gray-700 dark:text-white transition-all-smooth"
+                    className="block w-full rounded-[1.25rem] border border-white/10 bg-white/6 py-3.5 pl-12 pr-4 text-stone-100 outline-none transition-all duration-300 placeholder:text-stone-500 focus:border-[hsl(var(--primary))/0.5] focus:bg-white/10"
                     placeholder="admin@example.com"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-stone-300"
+                >
                   Password
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <LockKeyholeMinimalisticBold className="h-5 w-5 text-gray-400" />
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-stone-500">
+                    <LockKeyholeMinimalisticBold className="h-5 w-5" />
                   </div>
                   <input
                     id="password"
@@ -101,36 +149,24 @@ export default function LoginPage() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.currentTarget.value)}
-                    className="pl-12 block w-full px-4 py-3.5 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF9500] focus:border-transparent dark:bg-gray-700 dark:text-white transition-all-smooth"
+                    className="block w-full rounded-[1.25rem] border border-white/10 bg-white/6 py-3.5 pl-12 pr-4 text-stone-100 outline-none transition-all duration-300 placeholder:text-stone-500 focus:border-[hsl(var(--primary))/0.5] focus:bg-white/10"
                     placeholder="••••••••"
                   />
                 </div>
               </div>
-            </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full flex justify-center items-center gap-2 py-4 px-6 border border-transparent rounded-2xl shadow-xl text-base font-semibold text-white bg-[#FF9500] hover:bg-[#FF7A00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF9500] disabled:opacity-50 disabled:cursor-not-allowed transition-all-smooth hover:scale-105 hover:-translate-y-1"
-            >
-              {loading ? (
-                <>
-                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  <span>Signing in...</span>
-                </>
-              ) : (
-                <span>Sign in to Dashboard</span>
-              )}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={loading}
+                className="flex w-full items-center justify-center rounded-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] px-6 py-4 text-sm font-semibold text-[#120f0a] shadow-[0_18px_40px_rgba(193,154,107,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_48px_rgba(193,154,107,0.34)] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {loading ? "Signing in..." : "Enter backoffice"}
+              </button>
+            </form>
 
-          <div className="text-center pt-4 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <div className="mt-8 border-t border-white/10 pt-6 text-xs text-stone-500">
               Secure admin access for Marcel platform
-            </p>
+            </div>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ import {
   LetterBold,
   HomeAngleBold,
   HomeSmileBold,
-  HomeAddAngleBold
+  HomeAddAngleBold,
 } from "solar-icon-set";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
@@ -43,6 +43,28 @@ interface Stats {
   activeSpaces: number;
 }
 
+const fallbackStats: Stats = {
+  totalUsers: 0,
+  totalOnboardedUsers: 0,
+  activeDrivers: 0,
+  totalRides: 0,
+  todayRides: 0,
+  avgRideTime: 0,
+  activeIssues: 0,
+  userGrowth: 0,
+  revenue: 0,
+  onboardingPercentage: 0,
+  avgUserLevel: 0,
+  totalMessages: 0,
+  messagesToday: 0,
+  messagesThisWeek: 0,
+  avgMessagesPerSpace: 0,
+  totalSpaces: 0,
+  spacesToday: 0,
+  spacesThisWeek: 0,
+  activeSpaces: 0,
+};
+
 export function StatsCards() {
   const { data: stats } = useQuery<Stats>({
     queryKey: ["stats"],
@@ -51,176 +73,160 @@ export function StatsCards() {
         const { data } = await api.get("/admin/stats");
         return data;
       } catch (error) {
-        console.error('Failed to fetch stats:', error);
-        return {
-          totalUsers: 0,
-          totalOnboardedUsers: 0,
-          activeDrivers: 0,
-          totalRides: 0,
-          todayRides: 0,
-          avgRideTime: 0,
-          activeIssues: 0,
-          userGrowth: 0,
-          revenue: 0,
-          onboardingPercentage: 0,
-          avgUserLevel: 0,
-          totalMessages: 0,
-          messagesToday: 0,
-          messagesThisWeek: 0,
-          avgMessagesPerSpace: 0,
-          totalSpaces: 0,
-          spacesToday: 0,
-          spacesThisWeek: 0,
-          activeSpaces: 0
-        };
+        console.error("Failed to fetch stats:", error);
+        return fallbackStats;
       }
     },
     refetchInterval: 30000,
   });
 
+  const currentStats = stats ?? fallbackStats;
+
   const cards = [
     {
       title: "Total Users",
-      value: stats?.totalUsers || 0,
+      value: currentStats.totalUsers,
       icon: UsersGroupRoundedBold,
-      change: `+${stats?.userGrowth || 0}%`,
-      changeType: "positive" as const,
+      change: `+${currentStats.userGrowth}%`,
+      tone: "positive",
     },
     {
       title: "Onboarded Users",
-      value: stats?.totalOnboardedUsers || 0,
+      value: currentStats.totalOnboardedUsers,
       icon: UserCheckBold,
       change: "Completed setup",
-      changeType: "positive" as const,
+      tone: "positive",
     },
     {
       title: "Active Users",
-      value: stats?.activeDrivers || 0,
+      value: currentStats.activeDrivers,
       icon: BoltBold,
       change: "This week",
-      changeType: "neutral" as const,
+      tone: "neutral",
     },
     {
       title: "Quests Completed",
-      value: stats?.totalRides || 0,
+      value: currentStats.totalRides,
       icon: TargetBold,
-      change: `${stats?.todayRides || 0} today`,
-      changeType: "positive" as const,
+      change: `${currentStats.todayRides} today`,
+      tone: "positive",
     },
     {
       title: "Avg XP Reward",
-      value: `${stats?.avgRideTime || 0} XP`,
+      value: `${currentStats.avgRideTime} XP`,
       icon: CupBold,
       change: "Per quest",
-      changeType: "neutral" as const,
+      tone: "neutral",
     },
     {
       title: "Total Engagement",
-      value: `${(stats?.revenue || 0).toLocaleString()}`,
+      value: currentStats.revenue.toLocaleString(),
       icon: GraphUpBold,
       change: "Actions taken",
-      changeType: "positive" as const,
+      tone: "positive",
     },
     {
       title: "Focus Sessions",
-      value: stats?.activeIssues || 0,
+      value: currentStats.activeIssues,
       icon: SmartphoneBold,
       change: "Active now",
-      changeType: "info" as const,
+      tone: "info",
     },
     {
       title: "Onboarding Rate",
-      value: `${stats?.onboardingPercentage || 0}%`,
+      value: `${currentStats.onboardingPercentage}%`,
       icon: ChartSquareBold,
       change: "Users completed setup",
-      changeType: "positive" as const,
+      tone: "positive",
     },
     {
       title: "Average User Level",
-      value: `Level ${stats?.avgUserLevel || 0}`,
+      value: `Level ${currentStats.avgUserLevel}`,
       icon: MedalStarBold,
       change: "Platform progression",
-      changeType: "neutral" as const,
+      tone: "neutral",
     },
     {
       title: "Total Messages",
-      value: (stats?.totalMessages || 0).toLocaleString(),
+      value: currentStats.totalMessages.toLocaleString(),
       icon: ChatRoundLineBold,
-      change: `${stats?.messagesToday || 0} today`,
-      changeType: "positive" as const,
+      change: `${currentStats.messagesToday} today`,
+      tone: "positive",
     },
     {
       title: "Messages This Week",
-      value: (stats?.messagesThisWeek || 0).toLocaleString(),
+      value: currentStats.messagesThisWeek.toLocaleString(),
       icon: ChatSquareBold,
       change: "Last 7 days",
-      changeType: "info" as const,
+      tone: "info",
     },
     {
       title: "Avg Messages/Space",
-      value: stats?.avgMessagesPerSpace || 0,
+      value: currentStats.avgMessagesPerSpace,
       icon: LetterBold,
       change: "Per space",
-      changeType: "neutral" as const,
+      tone: "neutral",
     },
     {
       title: "Total Spaces",
-      value: stats?.totalSpaces || 0,
+      value: currentStats.totalSpaces,
       icon: HomeAngleBold,
-      change: `${stats?.spacesToday || 0} created today`,
-      changeType: "positive" as const,
+      change: `${currentStats.spacesToday} created today`,
+      tone: "positive",
     },
     {
       title: "Active Spaces",
-      value: stats?.activeSpaces || 0,
+      value: currentStats.activeSpaces,
       icon: HomeSmileBold,
       change: "With recent activity",
-      changeType: "info" as const,
+      tone: "info",
     },
     {
       title: "Spaces This Week",
-      value: stats?.spacesThisWeek || 0,
+      value: currentStats.spacesThisWeek,
       icon: HomeAddAngleBold,
       change: "Last 7 days",
-      changeType: "positive" as const,
+      tone: "positive",
     },
-  ];
+  ] as const;
 
   return (
-    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {cards.map((card, index) => {
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
+      {cards.map((card) => {
         const Icon = card.icon;
         return (
           <Card
-            key={index}
-            className="hover-lift transition-all-smooth animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800"
-            style={{ animationDelay: `${index * 0.05}s` }}
+            key={card.title}
+            className="group overflow-hidden rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--primary))/0.35]"
           >
             <CardContent className="p-6">
-              <div className="flex items-start justify-between">
-                <div className="space-y-3 flex-1">
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-4">
+                  <p className="text-sm font-medium text-stone-400">
                     {card.title}
                   </p>
-                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-3xl font-semibold tracking-[-0.04em] text-stone-100">
                     {card.value}
                   </p>
-                  <div className="flex items-center gap-2">
-                    <p
-                      className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                        card.changeType === "positive"
-                          ? "bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400"
-                          : card.changeType === "info"
-                          ? "bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400"
-                          : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
-                      }`}
-                    >
-                      {card.change}
-                    </p>
-                  </div>
+                  <span
+                    className={[
+                      "inline-flex rounded-full border px-3 py-1 text-xs font-medium",
+                      card.tone === "positive" &&
+                        "border-emerald-300/15 bg-emerald-300/10 text-emerald-100",
+                      card.tone === "info" &&
+                        "border-sky-300/15 bg-sky-300/10 text-sky-100",
+                      card.tone === "neutral" &&
+                        "border-white/10 bg-white/6 text-stone-300",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
+                    {card.change}
+                  </span>
                 </div>
-                <div className="rounded-2xl bg-[#FF9500]/10 p-3 hover-glow transition-all-smooth flex-shrink-0">
-                  <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-[#FF9500]" />
+
+                <div className="flex h-14 w-14 items-center justify-center rounded-[1.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(193,154,107,0.24),rgba(193,154,107,0.08))] text-[hsl(var(--primary))] transition-transform duration-300 group-hover:scale-105">
+                  <Icon className="h-6 w-6" />
                 </div>
               </div>
             </CardContent>

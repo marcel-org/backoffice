@@ -21,10 +21,237 @@ import {
 } from "recharts";
 import { TimeRangeSelector, type TimeRange } from "./time-range-selector";
 
-const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
+const COLORS = ["#c19a6b", "#d6b98b", "#8ecae6", "#7dd3a7", "#f59e0b"];
+
+const tooltipStyle = {
+  backgroundColor: "rgba(19, 18, 17, 0.94)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "18px",
+  color: "#f5f5f4",
+};
+
+const chartCards = [
+  {
+    title: "User Growth",
+    group: "Growth",
+    render: (data: any) => (
+      <LineChart data={data?.userGrowth || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="date" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="totalUsers"
+          name="Total Users"
+          stroke="#c19a6b"
+          strokeWidth={3}
+          dot={{ fill: "#c19a6b", r: 3 }}
+          activeDot={{ r: 5 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="activeUsers"
+          name="Active Users"
+          stroke="#8ecae6"
+          strokeWidth={2}
+          dot={false}
+          strokeDasharray="6 6"
+        />
+      </LineChart>
+    ),
+  },
+  {
+    title: "Quest Activity",
+    group: "Growth",
+    render: (data: any) => (
+      <LineChart data={data?.ridesOverTime || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="date" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="rides"
+          name="Quests Created"
+          stroke="#d6b98b"
+          strokeWidth={2.5}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="completed"
+          name="Quests Completed"
+          stroke="#7dd3a7"
+          strokeWidth={2.5}
+          dot={false}
+        />
+      </LineChart>
+    ),
+  },
+  {
+    title: "Completed Quests",
+    group: "Growth",
+    render: (data: any) => (
+      <LineChart data={data?.questCompletionOverTime || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="date" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="totalCompleted"
+          name="Completed"
+          stroke="#f59e0b"
+          strokeWidth={3}
+          dot={{ fill: "#f59e0b", r: 3 }}
+          activeDot={{ r: 5 }}
+        />
+      </LineChart>
+    ),
+  },
+  {
+    title: "Engagement by Day",
+    group: "Growth",
+    render: (data: any) => (
+      <BarChart data={data?.revenueByDay || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="day" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Bar dataKey="revenue" name="Engagement Score" fill="#c19a6b" radius={[10, 10, 0, 0]} />
+      </BarChart>
+    ),
+  },
+  {
+    title: "User Levels",
+    group: "Composition",
+    render: (data: any) => (
+      <PieChart>
+        <Pie
+          data={data?.userDistribution || []}
+          cx="50%"
+          cy="50%"
+          outerRadius={88}
+          dataKey="value"
+          nameKey="name"
+          label={({ name, value }) => `${name}: ${value}`}
+          labelLine={false}
+        >
+          {(data?.userDistribution || []).map((_: any, index: number) => (
+            <Cell key={index} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip contentStyle={tooltipStyle} />
+      </PieChart>
+    ),
+  },
+  {
+    title: "Peak Hours",
+    group: "Composition",
+    render: (data: any) => (
+      <BarChart data={data?.peakHours || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="hour" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Bar dataKey="rides" name="Quest Completions" fill="#8ecae6" radius={[10, 10, 0, 0]} />
+      </BarChart>
+    ),
+  },
+  {
+    title: "User Onboarding",
+    group: "Lifecycle",
+    render: (data: any) => (
+      <LineChart data={data?.userOnboarding || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="name" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="signups"
+          name="Signups"
+          stroke="#d6b98b"
+          strokeWidth={2.5}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="completed_onboarding"
+          name="Completed"
+          stroke="#7dd3a7"
+          strokeWidth={2.5}
+          dot={false}
+        />
+      </LineChart>
+    ),
+  },
+  {
+    title: "Messages Over Time",
+    group: "Lifecycle",
+    render: (data: any) => (
+      <LineChart data={data?.messagesOverTime || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="date" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="totalMessages"
+          name="Total Messages"
+          stroke="#8ecae6"
+          strokeWidth={3}
+          dot={{ fill: "#8ecae6", r: 3 }}
+          activeDot={{ r: 5 }}
+        />
+      </LineChart>
+    ),
+  },
+  {
+    title: "Daily Messages",
+    group: "Lifecycle",
+    render: (data: any) => (
+      <BarChart data={data?.dailyMessages || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="date" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Bar dataKey="messages" name="Messages" fill="#7dd3a7" radius={[10, 10, 0, 0]} />
+      </BarChart>
+    ),
+  },
+  {
+    title: "Spaces Over Time",
+    group: "Lifecycle",
+    render: (data: any) => (
+      <LineChart data={data?.spacesOverTime || []}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="date" stroke="#78716c" fontSize={12} />
+        <YAxis stroke="#78716c" fontSize={12} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="totalSpaces"
+          name="Total Spaces"
+          stroke="#f59e0b"
+          strokeWidth={3}
+          dot={{ fill: "#f59e0b", r: 3 }}
+          activeDot={{ r: 5 }}
+        />
+      </LineChart>
+    ),
+  },
+];
 
 export function ChartSection() {
-  const [timeRange, setTimeRange] = useState<TimeRange>("7d");
+  const [timeRange, setTimeRange] = useState<TimeRange>("30d");
 
   const { data: chartData, isLoading } = useQuery({
     queryKey: ["charts", timeRange],
@@ -33,7 +260,7 @@ export function ChartSection() {
         const { data } = await api.get(`/admin/charts?range=${timeRange}`);
         return data;
       } catch (error) {
-        console.error('Failed to fetch charts data:', error);
+        console.error("Failed to fetch charts data:", error);
         return {
           ridesOverTime: [],
           revenueByDay: [],
@@ -44,7 +271,7 @@ export function ChartSection() {
           questCompletionOverTime: [],
           messagesOverTime: [],
           dailyMessages: [],
-          spacesOverTime: []
+          spacesOverTime: [],
         };
       }
     },
@@ -52,437 +279,47 @@ export function ChartSection() {
   });
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 animate-slide-up">
-        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100">Analytics Dashboard</h2>
-        <div className="animate-scale-in" style={{ animationDelay: "0.2s" }}>
+    <div className="space-y-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="text-sm text-stone-400">
+            Metrics are grouped into growth, composition, and lifecycle panels
+            for a cleaner read.
+          </p>
+        </div>
+        <div className="w-full sm:w-auto">
           <TimeRangeSelector value={timeRange} onChange={setTimeRange} />
         </div>
       </div>
 
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.3s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Users Growth Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.userGrowth || []}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis
-              dataKey="date"
-              className="stroke-muted-foreground"
-              style={{ fontSize: 12 }}
-            />
-            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="totalUsers"
-              name="Total Users"
-              stroke="#FF9601"
-              strokeWidth={3}
-              dot={{ fill: "#FF9601", strokeWidth: 2, r: 4 }}
-              activeDot={{ r: 6, stroke: "#FF9601", strokeWidth: 2, fill: "#FFF" }}
-            />
-            <Line
-              type="monotone"
-              dataKey="activeUsers"
-              name="Active Users"
-              stroke="#10B981"
-              strokeWidth={2}
-              dot={false}
-              strokeDasharray="5 5"
-            />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.4s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Quest Activity Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.ridesOverTime || []}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis
-              dataKey="date"
-              className="stroke-muted-foreground"
-              style={{ fontSize: 12 }}
-            />
-            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="rides"
-              name="Quests Created"
-              stroke="#3B82F6"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="completed"
-              name="Quests Completed"
-              stroke="#10B981"
-              strokeWidth={2}
-              dot={false}
-            />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.4s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Quests Completed Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.questCompletionOverTime || []}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis
-                  dataKey="date"
-                  className="stroke-muted-foreground"
-                  style={{ fontSize: 12 }}
-                />
-                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
-                    color: "hsl(var(--popover-foreground))"
-                  }}
-                />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="totalCompleted"
-                  name="Total Completed Quests"
-                  stroke="#8B5CF6"
-                  strokeWidth={3}
-                  dot={{ fill: "#8B5CF6", strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: "#8B5CF6", strokeWidth: 2, fill: "#FFF" }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.5s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Activity by Day</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData?.revenueByDay || []}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis
-              dataKey="day"
-              className="stroke-muted-foreground"
-              style={{ fontSize: 12 }}
-            />
-            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-            <Bar dataKey="revenue" name="Engagement Score" fill="#3B82F6" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.6s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">User Level Distribution</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-            <Pie
-              data={chartData?.userDistribution || []}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={(entry) => `${entry.name}: ${entry.value}`}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {(chartData?.userDistribution || []).map((entry: any, index: number) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-              </PieChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.7s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Peak Productivity Hours</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData?.peakHours || []}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis
-              dataKey="hour"
-              className="stroke-muted-foreground"
-              style={{ fontSize: 12 }}
-            />
-            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-            <Bar dataKey="rides" name="Quest Completions" fill="#10B981" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.8s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">New User Onboarding</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.userOnboarding || []}>
-            <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-            <XAxis
-              dataKey="name"
-              className="stroke-muted-foreground"
-              style={{ fontSize: 12 }}
-            />
-            <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "8px",
-                color: "hsl(var(--popover-foreground))"
-              }}
-            />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="signups"
-              name="New Signups"
-              stroke="#8B5CF6"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="completed_onboarding"
-              name="Completed Onboarding"
-              stroke="#06B6D4"
-              strokeWidth={2}
-              dot={false}
-            />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "0.9s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Messages Sent Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.messagesOverTime || []}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis
-                  dataKey="date"
-                  className="stroke-muted-foreground"
-                  style={{ fontSize: 12 }}
-                />
-                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
-                    color: "hsl(var(--popover-foreground))"
-                  }}
-                />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="totalMessages"
-                  name="Total Messages"
-                  stroke="#EC4899"
-                  strokeWidth={3}
-                  dot={{ fill: "#EC4899", strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: "#EC4899", strokeWidth: 2, fill: "#FFF" }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "1.0s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Daily Messages Count</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData?.dailyMessages || []}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis
-                  dataKey="date"
-                  className="stroke-muted-foreground"
-                  style={{ fontSize: 12 }}
-                />
-                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
-                    color: "hsl(var(--popover-foreground))"
-                  }}
-                />
-                <Bar dataKey="messages" name="Messages" fill="#06B6D4" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="hover-lift animate-scale-in border-none shadow-md hover:shadow-xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden" style={{ animationDelay: "1.1s" }}>
-        <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-          <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-white">Total Spaces Created Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-muted-foreground">Loading chart data...</div>
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData?.spacesOverTime || []}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis
-                  dataKey="date"
-                  className="stroke-muted-foreground"
-                  style={{ fontSize: 12 }}
-                />
-                <YAxis className="stroke-muted-foreground" style={{ fontSize: 12 }} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
-                    color: "hsl(var(--popover-foreground))"
-                  }}
-                />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="totalSpaces"
-                  name="Total Spaces"
-                  stroke="#F59E0B"
-                  strokeWidth={3}
-                  dot={{ fill: "#F59E0B", strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: "#F59E0B", strokeWidth: 2, fill: "#FFF" }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </CardContent>
-      </Card>
-
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+        {chartCards.map((chart) => (
+          <Card
+            key={chart.title}
+            className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl"
+          >
+            <CardHeader className="border-b border-white/10">
+              <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+                {chart.group}
+              </p>
+              <CardTitle className="text-xl font-semibold tracking-[-0.03em] text-stone-100">
+                {chart.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              {isLoading ? (
+                <div className="flex h-[320px] items-center justify-center text-sm text-stone-500">
+                  Loading chart data...
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={320}>
+                  {chart.render(chartData)}
+                </ResponsiveContainer>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

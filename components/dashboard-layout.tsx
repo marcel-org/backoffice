@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { checkAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { HamburgerMenuBold, CloseCircleBold } from "solar-icon-set";
-import { ShapeElement } from "@/components/shape-element";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
@@ -24,72 +23,77 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center gap-4">
-          <div className="relative transform rotate-3 animate-bounce-in">
-            <ShapeElement
-              shape="pentagon"
-              color="#FF9500"
-              width={64}
-              height={64}
-              className="drop-shadow-lg"
-            />
-          </div>
-          <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">Loading...</div>
+      <div className="flex min-h-screen items-center justify-center bg-[hsl(var(--background))] px-6">
+        <div className="rounded-[2rem] border border-white/10 bg-white/6 px-8 py-10 text-center shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+          <div className="mx-auto mb-5 h-16 w-16 rounded-[1.35rem] border border-white/10 bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] shadow-[0_20px_40px_rgba(193,154,107,0.28)]" />
+          <p className="text-sm uppercase tracking-[0.24em] text-stone-500">
+            Marcel
+          </p>
+          <p className="mt-2 text-lg font-semibold text-stone-100">
+            Loading backoffice
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="hidden lg:block">
-        <Sidebar />
+    <div className="relative min-h-screen overflow-hidden bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-[-18rem] h-[36rem] bg-[radial-gradient(circle_at_top,rgba(193,154,107,0.18),transparent_58%)]" />
+        <div className="absolute right-[-10rem] top-32 h-[24rem] w-[24rem] rounded-full bg-[rgba(210,180,140,0.08)] blur-3xl" />
+        <div className="absolute left-[-10rem] bottom-20 h-[20rem] w-[20rem] rounded-full bg-white/5 blur-3xl" />
       </div>
 
-      {mobileMenuOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="fixed inset-y-0 left-0 z-50 lg:hidden animate-slide-up">
-            <Sidebar />
-          </div>
-        </>
-      )}
+      <div className="relative z-10 flex min-h-screen">
+        <div className="hidden xl:block">
+          <Sidebar />
+        </div>
 
-      <div className="flex-1 flex flex-col min-w-0">
-        <header className="lg:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-          <div className="flex items-center gap-3">
+        {mobileMenuOpen && (
+          <>
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all-smooth"
-            >
-              {mobileMenuOpen ? (
-                <CloseCircleBold className="h-6 w-6" />
-              ) : (
-                <HamburgerMenuBold className="h-6 w-6" />
-              )}
-            </button>
-            <div className="flex items-center gap-2">
-              <div className="transform rotate-3">
-                <ShapeElement
-                  shape="circle"
-                  color="#FF9500"
-                  width={32}
-                  height={32}
-                  className="drop-shadow-md"
-                />
-              </div>
-              <h1 className="text-lg font-bold text-gray-900 dark:text-white">Marcel Admin</h1>
+              className="fixed inset-0 z-40 bg-black/60 xl:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close navigation"
+            />
+            <div className="fixed inset-y-0 left-0 z-50 xl:hidden">
+              <Sidebar compact onNavigate={() => setMobileMenuOpen(false)} />
             </div>
-          </div>
-        </header>
+          </>
+        )}
 
-        <main className="flex-1 overflow-y-auto">
-          <div className="p-4 sm:p-6 lg:p-8">{children}</div>
-        </main>
+        <div className="flex min-w-0 flex-1 flex-col">
+          <header className="sticky top-0 z-30 border-b border-white/10 bg-[rgba(9,9,12,0.72)] px-4 py-4 backdrop-blur-xl xl:hidden">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+                  Backoffice
+                </p>
+                <h1 className="mt-1 text-lg font-semibold text-stone-100">
+                  Marcel
+                </h1>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen((value) => !value)}
+                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/6 text-stone-200 transition-all duration-300 hover:border-[hsl(var(--primary))/0.45] hover:text-[hsl(var(--primary))]"
+                aria-label="Toggle navigation"
+              >
+                {mobileMenuOpen ? (
+                  <CloseCircleBold className="h-6 w-6" />
+                ) : (
+                  <HamburgerMenuBold className="h-6 w-6" />
+                )}
+              </button>
+            </div>
+          </header>
+
+          <main className="flex-1 overflow-y-auto">
+            <div className="mx-auto w-full max-w-[1700px] px-4 py-4 sm:px-6 sm:py-6 xl:px-8 xl:py-8">
+              {children}
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );
