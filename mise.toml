@@ -1,0 +1,20 @@
+[env]
+PORT = "3003"
+
+[tasks.dev]
+run = "next dev -p ${PORT}"
+
+[tasks.build]
+run = "next build"
+
+[tasks.start]
+run = "next start -p ${PORT}"
+
+[tasks.lint]
+run = "next lint"
+
+[tasks.install]
+run = "bun install"
+
+[tasks.clean]
+run = "rm -rf .next node_modules"
