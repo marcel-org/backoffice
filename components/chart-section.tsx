@@ -282,7 +282,7 @@ export function ChartSection() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
-          <p className="text-sm text-stone-400">
+          <p className="text-sm text-stone-600 dark:text-stone-400">
             Grouped into growth, composition, and lifecycle panels.
           </p>
         </div>
@@ -295,13 +295,13 @@ export function ChartSection() {
         {chartCards.map((chart) => (
           <Card
             key={chart.title}
-            className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl"
+            className="overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] shadow-[0_24px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] dark:shadow-[0_24px_60px_rgba(0,0,0,0.22)]"
           >
-            <CardHeader className="border-b border-white/10">
+            <CardHeader className="border-b border-stone-200/80 dark:border-white/10">
               <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
                 {chart.group}
               </p>
-              <CardTitle className="text-xl font-semibold tracking-[-0.03em] text-stone-100">
+              <CardTitle className="text-xl font-semibold tracking-[-0.03em] text-stone-900 dark:text-stone-100">
                 {chart.title}
               </CardTitle>
             </CardHeader>

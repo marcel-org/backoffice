@@ -29,10 +29,10 @@ export function TimeRangeSelector({
 }: TimeRangeSelectorProps) {
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="w-full rounded-full border border-white/10 bg-white/6 px-5 text-stone-100 sm:w-[220px]">
+      <SelectTrigger className="w-full rounded-full border border-stone-200 bg-white px-5 text-stone-900 dark:border-white/10 dark:bg-white/6 dark:text-stone-100 sm:w-[220px]">
         <SelectValue placeholder="Select time range" />
       </SelectTrigger>
-      <SelectContent className="border-white/10 bg-[#12110f] text-stone-100">
+      <SelectContent className="border-stone-200 bg-white text-stone-900 dark:border-white/10 dark:bg-[#12110f] dark:text-stone-100">
         {timeRangeOptions.map((option) => (
           <SelectItem key={option.value} value={option.value}>
             {option.label}

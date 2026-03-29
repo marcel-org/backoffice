@@ -30,12 +30,12 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "flex h-full flex-col border-r border-white/10 bg-[rgba(9,9,12,0.82)] backdrop-blur-xl",
+        "flex h-full flex-col border-r border-stone-200/80 bg-[rgba(250,248,244,0.92)] backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(9,9,12,0.82)]",
         compact ? "w-[19rem]" : "h-screen w-72"
       )}
     >
       <div className="p-6">
-        <h1 className="text-xl font-semibold tracking-[-0.03em] text-stone-100">
+        <h1 className="text-xl font-semibold tracking-[-0.03em] text-stone-900 dark:text-stone-100">
           Marcel Backoffice
         </h1>
       </div>
@@ -54,11 +54,11 @@ export function Sidebar({
                   className={cn(
                     "flex items-center gap-3 rounded-[1.35rem] border px-4 py-3 text-sm font-medium transition-all duration-300",
                     isActive
-                      ? "border-[hsl(var(--primary))/0.35] bg-white/10 text-stone-50 shadow-[0_18px_40px_rgba(0,0,0,0.28)]"
-                      : "border-transparent bg-transparent text-stone-400 hover:border-white/10 hover:bg-white/5 hover:text-stone-100"
+                      ? "border-[hsl(var(--primary))/0.35] bg-white text-stone-950 shadow-[0_18px_40px_rgba(0,0,0,0.08)] dark:bg-white/10 dark:text-stone-50 dark:shadow-[0_18px_40px_rgba(0,0,0,0.28)]"
+                      : "border-transparent bg-transparent text-stone-500 hover:border-stone-200 hover:bg-stone-200/60 hover:text-stone-900 dark:text-stone-400 dark:hover:border-white/10 dark:hover:bg-white/5 dark:hover:text-stone-100"
                   )}
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/6">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 dark:border-white/10 dark:bg-white/6 dark:text-inherit">
                     <Icon className="h-5 w-5" />
                   </span>
                   {item.name}
@@ -69,22 +69,14 @@ export function Sidebar({
         </div>
       </div>
 
-      <div className="border-t border-white/10 p-4">
-        <div className="rounded-[1.75rem] border border-white/10 bg-white/6 p-4">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-sm font-medium text-stone-200">Theme</p>
-              <p className="mt-1 text-xs text-stone-500">
-                Light or dark
-              </p>
-            </div>
-            <ThemeToggle />
-          </div>
+      <div className="border-t border-stone-200/80 p-4 dark:border-white/10">
+        <div className="flex items-center justify-end">
+          <ThemeToggle />
         </div>
 
         <button
           onClick={logout}
-          className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-rose-400/20 bg-rose-400/10 px-5 py-3 text-sm font-medium text-rose-100 transition-all duration-300 hover:bg-rose-400/16"
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-rose-300/40 bg-rose-100 px-5 py-3 text-sm font-medium text-rose-700 transition-all duration-300 hover:bg-rose-200 dark:border-rose-400/20 dark:bg-rose-400/10 dark:text-rose-100 dark:hover:bg-rose-400/16"
         >
           <LogoutBold className="h-5 w-5" />
           Logout

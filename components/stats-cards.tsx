@@ -197,15 +197,15 @@ export function StatsCards() {
         return (
           <Card
             key={card.title}
-            className="group overflow-hidden rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--primary))/0.35]"
+            className="group overflow-hidden rounded-[1.6rem] border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] shadow-[0_24px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--primary))/0.35] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] dark:shadow-[0_24px_60px_rgba(0,0,0,0.22)]"
           >
             <CardContent className="p-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-4">
-                  <p className="text-sm font-medium text-stone-400">
+                  <p className="text-sm font-medium text-stone-500 dark:text-stone-400">
                     {card.title}
                   </p>
-                  <p className="text-3xl font-semibold tracking-[-0.04em] text-stone-100">
+                  <p className="text-3xl font-semibold tracking-[-0.04em] text-stone-900 dark:text-stone-100">
                     {card.value}
                   </p>
                   <span
@@ -216,7 +216,7 @@ export function StatsCards() {
                       card.tone === "info" &&
                         "border-sky-300/15 bg-sky-300/10 text-sky-100",
                       card.tone === "neutral" &&
-                        "border-white/10 bg-white/6 text-stone-300",
+                        "border-stone-200 bg-stone-100 text-stone-600 dark:border-white/10 dark:bg-white/6 dark:text-stone-300",
                     ]
                       .filter(Boolean)
                       .join(" ")}
@@ -225,7 +225,7 @@ export function StatsCards() {
                   </span>
                 </div>
 
-                <div className="flex h-14 w-14 items-center justify-center rounded-[1.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(193,154,107,0.24),rgba(193,154,107,0.08))] text-[hsl(var(--primary))] transition-transform duration-300 group-hover:scale-105">
+                <div className="flex h-14 w-14 items-center justify-center rounded-[1.2rem] border border-stone-200 bg-[linear-gradient(135deg,rgba(148,163,184,0.18),rgba(148,163,184,0.08))] text-[hsl(var(--primary))] transition-transform duration-300 group-hover:scale-105 dark:border-white/10 dark:bg-[linear-gradient(135deg,rgba(148,163,184,0.24),rgba(148,163,184,0.08))]">
                   <Icon className="h-6 w-6" />
                 </div>
               </div>

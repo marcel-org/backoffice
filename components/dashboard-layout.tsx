@@ -24,12 +24,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[hsl(var(--background))] px-6">
-        <div className="rounded-[2rem] border border-white/10 bg-white/6 px-8 py-10 text-center shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <div className="mx-auto mb-5 h-16 w-16 rounded-[1.35rem] border border-white/10 bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] shadow-[0_20px_40px_rgba(148,163,184,0.2)]" />
+        <div className="rounded-[2rem] border border-stone-200/80 bg-white/90 px-8 py-10 text-center shadow-[0_30px_80px_rgba(0,0,0,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+          <div className="mx-auto mb-5 h-16 w-16 rounded-[1.35rem] border border-stone-200 bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-soft)))] shadow-[0_20px_40px_rgba(148,163,184,0.16)] dark:border-white/10 dark:shadow-[0_20px_40px_rgba(148,163,184,0.2)]" />
           <p className="text-sm uppercase tracking-[0.24em] text-stone-500">
             Marcel
           </p>
-          <p className="mt-2 text-lg font-semibold text-stone-100">
+          <p className="mt-2 text-lg font-semibold text-stone-900 dark:text-stone-100">
             Loading backoffice
           </p>
         </div>
@@ -42,7 +42,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-[-18rem] h-[36rem] bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_58%)]" />
         <div className="absolute right-[-10rem] top-32 h-[24rem] w-[24rem] rounded-full bg-[rgba(148,163,184,0.08)] blur-3xl" />
-        <div className="absolute left-[-10rem] bottom-20 h-[20rem] w-[20rem] rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute left-[-10rem] bottom-20 h-[20rem] w-[20rem] rounded-full bg-stone-200/50 blur-3xl dark:bg-white/5" />
       </div>
 
       <div className="relative z-10 flex min-h-screen">
@@ -64,19 +64,19 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         )}
 
         <div className="flex min-w-0 flex-1 flex-col xl:pl-72">
-          <header className="sticky top-0 z-30 border-b border-white/10 bg-[rgba(9,9,12,0.72)] px-4 py-4 backdrop-blur-xl xl:hidden">
+          <header className="sticky top-0 z-30 border-b border-stone-200/80 bg-[rgba(250,248,244,0.88)] px-4 py-4 backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(9,9,12,0.72)] xl:hidden">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
                   Backoffice
                 </p>
-                <h1 className="mt-1 text-lg font-semibold text-stone-100">
+                <h1 className="mt-1 text-lg font-semibold text-stone-900 dark:text-stone-100">
                   Marcel
                 </h1>
               </div>
               <button
                 onClick={() => setMobileMenuOpen((value) => !value)}
-                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/6 text-stone-200 transition-all duration-300 hover:border-[hsl(var(--primary))/0.45] hover:text-[hsl(var(--primary))]"
+                className="flex h-12 w-12 items-center justify-center rounded-2xl border border-stone-200 bg-white text-stone-700 transition-all duration-300 hover:border-[hsl(var(--primary))/0.45] hover:text-[hsl(var(--primary))] dark:border-white/10 dark:bg-white/6 dark:text-stone-200"
                 aria-label="Toggle navigation"
               >
                 {mobileMenuOpen ? (

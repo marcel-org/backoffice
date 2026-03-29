@@ -17,7 +17,7 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="sm"
-      className="h-11 w-11 rounded-2xl border border-white/10 bg-white/6 p-0 text-stone-200 transition-all duration-300 hover:border-[hsl(var(--primary))/0.4] hover:bg-white/10 hover:text-[hsl(var(--primary))]"
+      className="h-10 w-10 rounded-full p-0 text-stone-500 transition-all duration-300 hover:bg-stone-200/70 hover:text-[hsl(var(--primary))] dark:text-stone-300 dark:hover:bg-white/10"
       onClick={() => mounted && setTheme(theme === "dark" ? "light" : "dark")}
     >
       {mounted && theme === "dark" ? (
