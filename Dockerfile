@@ -43,13 +43,8 @@ COPY --from=base /app/next.config.js ./next.config.js
 COPY package.json bun.lock* ./
 RUN bun install --production --frozen-lockfile
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Set correct permissions
-RUN chown -R nextjs:nodejs /app
-USER nextjs
+# Use the non-root user that already exists in the Bun image
+USER bun
 
 # Railway will set PORT environment variable
 # We don't need to EXPOSE a specific port since Railway handles this
