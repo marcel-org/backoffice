@@ -212,9 +212,9 @@ export function StatsCards() {
                     className={[
                       "inline-flex rounded-full border px-3 py-1 text-xs font-medium",
                       card.tone === "positive" &&
-                        "border-emerald-300/15 bg-emerald-300/10 text-emerald-100",
+                        "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-300/15 dark:bg-emerald-300/10 dark:text-emerald-100",
                       card.tone === "info" &&
-                        "border-sky-300/15 bg-sky-300/10 text-sky-100",
+                        "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-300/15 dark:bg-sky-300/10 dark:text-sky-100",
                       card.tone === "neutral" &&
                         "border-stone-200 bg-stone-100 text-stone-600 dark:border-white/10 dark:bg-white/6 dark:text-stone-300",
                     ]

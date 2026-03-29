@@ -41,10 +41,14 @@ const activityIcons = {
 };
 
 const statusColors = {
-  success: "border-emerald-300/15 bg-emerald-300/10 text-emerald-100",
-  warning: "border-amber-300/15 bg-amber-300/10 text-amber-100",
-  error: "border-rose-300/15 bg-rose-300/10 text-rose-100",
-  info: "border-sky-300/15 bg-sky-300/10 text-sky-100",
+  success:
+    "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-300/15 dark:bg-emerald-300/10 dark:text-emerald-100",
+  warning:
+    "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-300/15 dark:bg-amber-300/10 dark:text-amber-100",
+  error:
+    "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-300/15 dark:bg-rose-300/10 dark:text-rose-100",
+  info:
+    "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-300/15 dark:bg-sky-300/10 dark:text-sky-100",
 };
 
 export function RecentActivity() {
