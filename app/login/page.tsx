@@ -98,7 +98,7 @@ export default function LoginPage() {
 
             <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
               {error && (
-                <div className="flex items-center gap-3 rounded-[1.4rem] border border-rose-400/15 bg-rose-400/10 p-4 text-sm text-rose-100">
+                <div className="flex items-center gap-3 rounded-[1.4rem] border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700 dark:border-rose-400/15 dark:bg-rose-400/10 dark:text-rose-100">
                   <DangerBold className="h-5 w-5 flex-shrink-0" />
                   <p>{error}</p>
                 </div>

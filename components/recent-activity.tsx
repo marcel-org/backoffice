@@ -81,7 +81,7 @@ export function RecentActivity() {
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="divide-y divide-white/10">
+        <div className="divide-y divide-stone-200/80 dark:divide-white/10">
           {displayedActivities?.length === 0 ? (
             <div className="px-6 py-10 text-center text-stone-500">
               <InfoCircleBold className="mx-auto mb-3 h-8 w-8 opacity-60" />

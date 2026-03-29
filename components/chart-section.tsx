@@ -24,10 +24,10 @@ import { TimeRangeSelector, type TimeRange } from "./time-range-selector";
 const COLORS = ["#94a3b8", "#cbd5e1", "#7dd3fc", "#86efac", "#a7f3d0"];
 
 const tooltipStyle = {
-  backgroundColor: "rgba(19, 18, 17, 0.94)",
-  border: "1px solid rgba(255,255,255,0.08)",
+  backgroundColor: "hsl(var(--popover))",
+  border: "1px solid hsl(var(--border))",
   borderRadius: "18px",
-  color: "#f5f5f4",
+  color: "hsl(var(--popover-foreground))",
 };
 
 const chartCards = [
