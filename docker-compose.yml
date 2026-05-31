@@ -1,0 +1,13 @@
+services:
+  backoffice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+      args:
+        API_URL: ${API_URL}
+        MOCK_API: ${MOCK_API:-false}
+    ports:
+      - "3000"
+    env_file:
+      - .env
